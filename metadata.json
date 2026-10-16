@@ -1,0 +1,6 @@
+{
+  "name": "GreenNest Realtors",
+  "description": "Selective Homes. Exclusive Living. Curated real estate advisory in Lucknow specializing in select RERA-registered residential and investment properties.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

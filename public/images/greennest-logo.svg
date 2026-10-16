@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldNest" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#305d3f" />
+      <stop offset="45%" stop-color="#305d3f" />
+      <stop offset="70%" stop-color="#B8934A" />
+      <stop offset="100%" stop-color="#C8AD78" />
+    </linearGradient>
+  </defs>
+  
+  <!-- GreenNest Brand Text matching the uploaded Logo -->
+  <g id="brand-wordmark">
+    <!-- Main wordmark -->
+    <text x="10" y="80" font-family="'Playfair Display', Georgia, serif" font-size="74" font-weight="700" fill="#305d3f" letter-spacing="-1.5">Green<tspan fill="url(#goldNest)">Nest</tspan></text>
+    
+    <!-- Tagline -->
+    <text x="12" y="112" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="13" font-weight="500" fill="#475569" letter-spacing="4.5">SELECTIVE HOMES. EXCLUSIVE LIVING.</text>
+  </g>
+</svg>
