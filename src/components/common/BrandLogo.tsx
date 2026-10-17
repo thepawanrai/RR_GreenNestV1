@@ -11,50 +11,45 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   className = '',
   size = 'md',
   theme = 'light',
-  showTagline = true,
 }) => {
   const isLight = theme === 'light';
 
-  // Responsive size presets
-  const sizeClasses = {
-    sm: {
-      brand: 'text-2xl',
-      tagline: 'text-[9px] tracking-[0.22em]',
-    },
-    md: {
-      brand: 'text-2xl sm:text-3xl',
-      tagline: 'text-[10px] sm:text-[11px] tracking-[0.24em]',
-    },
-    lg: {
-      brand: 'text-3xl sm:text-4xl lg:text-5xl',
-      tagline: 'text-xs sm:text-sm tracking-[0.28em]',
-    },
+  // Responsive image dimensions based on size prop
+  const heightClasses = {
+    sm: 'h-8 sm:h-9',
+    md: 'h-10 sm:h-12',
+    lg: 'h-14 sm:h-16',
   }[size];
 
-  return (
-    <div className={`flex flex-col select-none ${className}`}>
-      {/* Brand Wordmark matching exact GreenNest PNG layout */}
-      <span
-        className={`font-serif font-bold tracking-tight leading-none ${sizeClasses.brand} ${
-          isLight ? 'text-[#305d3f]' : 'text-white'
-        }`}
-      >
-        Green
-        <span className="relative inline-block bg-gradient-to-r from-[#305d3f] via-[#B8934A] to-[#C8AD78] bg-clip-text text-transparent">
-          Nest
-        </span>
-      </span>
+  if (!isLight) {
+    return (
+      <div className={`inline-flex items-center select-none ${className}`}>
+        <div className="bg-white/95 backdrop-blur-sm px-3.5 py-1.5 border border-white/20 shadow-sm hover:bg-white transition-colors">
+          <img
+            src="/images/greennest-logo-trimmed.png"
+            alt="GreenNest Realtors - Selective Homes. Exclusive Living."
+            className={`${heightClasses} w-auto object-contain block`}
+            loading="eager"
+            onError={(e) => {
+              e.currentTarget.src = '/images/greennest-logo.png';
+            }}
+          />
+        </div>
+      </div>
+    );
+  }
 
-      {/* Official Tagline as in PNG */}
-      {showTagline && (
-        <span
-          className={`uppercase font-sans font-medium mt-1 ${sizeClasses.tagline} ${
-            isLight ? 'text-slate-700' : 'text-slate-300'
-          }`}
-        >
-          Selective Homes. Exclusive Living.
-        </span>
-      )}
+  return (
+    <div className={`inline-flex items-center select-none ${className}`}>
+      <img
+        src="/images/greennest-logo-trimmed.png"
+        alt="GreenNest Realtors - Selective Homes. Exclusive Living."
+        className={`${heightClasses} w-auto object-contain block`}
+        loading="eager"
+        onError={(e) => {
+          e.currentTarget.src = '/images/greennest-logo.png';
+        }}
+      />
     </div>
   );
 };
