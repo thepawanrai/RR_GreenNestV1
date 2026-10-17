@@ -15,7 +15,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-white/10">
           {/* Brand & Advisor Bio */}
           <div className="lg:col-span-2 space-y-4">
-            <BrandLogo size="md" theme="dark" />
+            <button
+              onClick={() => onNavigate('/')}
+              className="focus:outline-none text-left cursor-pointer transition-opacity hover:opacity-90 block"
+              aria-label="GreenNest Realtors Home"
+            >
+              <BrandLogo size="md" theme="dark" />
+            </button>
 
             <p className="text-sm text-slate-300 leading-relaxed max-w-sm pt-2">
               GreenNest Realtors is a boutique real estate advisory and channel-partner business based in Lucknow. We deliberately focus on a small, curated portfolio of RERA-registered developments rather than an overwhelming open listings directory.
