@@ -100,14 +100,8 @@ export const HomePage: React.FC<HomePageProps> = ({
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
             {/* Left Content */}
             <div className="lg:col-span-6 space-y-6">
-              {/* Agent RERA and Advisory Trust Tag (No Pill) */}
               <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#305d3f] font-semibold flex-wrap">
-                <span className="flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                  <span>Agent RERA: {AGENT_RERA_NUMBER}</span>
-                </span>
-                <span aria-hidden="true" className="text-slate-300">·</span>
-                <span className="text-slate-600">Authorised Channel Partner of Shalimar Corp.</span>
+                <span className="text-slate-600">Curated Real Estate Advisory · Lucknow</span>
               </div>
 
               <h1 className="font-serif text-3xl sm:text-5xl lg:text-5.5xl font-bold text-[#305d3f] leading-[1.14] tracking-tight">
@@ -289,15 +283,15 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
 
             <div className="space-y-1 md:px-6 pt-4 md:pt-0">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">Agent RERA</span>
-              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">{AGENT_RERA_NUMBER}</p>
-              <p className="text-xs text-slate-200">Registered with Uttar Pradesh Real Estate Regulatory Authority.</p>
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">100%</span>
+              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">RERA-Registered</p>
+              <p className="text-xs text-slate-200">Only legally vetted residential developments in Gomti Nagar Ext.</p>
             </div>
 
             <div className="space-y-1 md:px-6 pt-4 md:pt-0">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">Authorised</span>
-              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">Channel Partner</p>
-              <p className="text-xs text-slate-200">Direct liaison with Shalimar Corp. (official source: shalimarcorp.com).</p>
+              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">Direct</span>
+              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">Developer Pricing</p>
+              <p className="text-xs text-slate-200">Transparent builder price sheets and sanctioned floor layouts.</p>
             </div>
 
             <div className="space-y-1 md:pl-6 pt-4 md:pt-0">

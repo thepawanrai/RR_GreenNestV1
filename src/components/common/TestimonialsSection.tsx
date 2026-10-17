@@ -179,7 +179,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
                   <span>
-                    <strong>Authorised Channel Partner:</strong> Direct liaison with Shalimar Corp. management desk.
+                    <strong>Direct Developer Access:</strong> Direct liaison with project management desks.
                   </span>
                 </div>
                 <div className="flex items-start gap-2.5">

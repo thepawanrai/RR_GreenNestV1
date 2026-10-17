@@ -49,9 +49,7 @@ export const AdvisorCard: React.FC<AdvisorCardProps> = ({ onBookConsultation }) 
               <p className="font-medium text-slate-800 flex items-center gap-1.5">
                 <span>Senior Real Estate Advisor · 10 Years Dedicated Lucknow Advisory</span>
               </p>
-              <p>
-                Developer Standing: <span className="text-[#305d3f] font-semibold">Authorised Channel Partner (Shalimar Corp.)</span>
-              </p>
+
               <div className="inline-flex items-center gap-1.5 text-amber-800 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-xs font-medium text-[11px]">
                 <Award className="w-3.5 h-3.5 text-amber-600 flex-shrink-0" />
                 <span>Awarded by Khalid Masood (MD, Shalimar Corp Ltd) at Shalimar Excellence Summit</span>

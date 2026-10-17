@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, MessageCircle, Calendar } from 'lucide-react';
-import { AGENT_RERA_NUMBER, AGENT_PHONE } from '../../data/projects';
+import { AGENT_PHONE } from '../../data/projects';
 
 interface StickyMobileCTAProps {
   onOpenConsultation: () => void;
@@ -15,7 +15,7 @@ export const StickyMobileCTA: React.FC<StickyMobileCTAProps> = ({
   const getWhatsAppMessage = () => {
     const topic = projectName || 'Lucknow curated properties';
     return encodeURIComponent(
-      `Hello GreenNest Realtors (Agent RERA: ${AGENT_RERA_NUMBER}), I am interested in ${topic}. Please share verified details and pricing.`
+      `Hello GreenNest Realtors, I am interested in ${topic}. Please share verified details and pricing.`
     );
   };
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle, MessageCircle, Phone, Clock, ShieldCheck } from 'lucide-react';
-import { PROJECTS, AGENT_RERA_NUMBER, AGENT_PHONE, AGENT_NAME } from '../../data/projects';
+import { PROJECTS, AGENT_PHONE, AGENT_NAME } from '../../data/projects';
 import { LeadSubmissionPayload, LeadSubmissionResult } from '../../types';
 
 interface LeadFormProps {
@@ -17,7 +17,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   defaultProjectSlug = '',
   defaultProjectName = '',
   title = 'Request Project Details & Consultation',
-  subtitle = `Direct consultation with ${AGENT_NAME}. UP-RERA Registered Agent: ${AGENT_RERA_NUMBER}.`,
+  subtitle = `Direct consultation with ${AGENT_NAME}. Independent property advisory.`,
   onSuccess,
   onCancel,
   compact = false,
@@ -125,7 +125,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
               <span>Direct Advisor Queue Active</span>
             </div>
             <p>
-              Your contact request is queued for advisor {AGENT_NAME} ({AGENT_PHONE}). Agent RERA: <strong className="font-mono text-slate-900">{AGENT_RERA_NUMBER}</strong>.
+              Your contact request is queued for advisor {AGENT_NAME} ({AGENT_PHONE}).
             </p>
           </div>
         )}
@@ -163,11 +163,6 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   return (
     <div className={`bg-white ${compact ? 'p-4 sm:p-6' : 'p-6 sm:p-8 border border-slate-200 shadow-sm'}`}>
       <div className={`${compact ? 'mb-4 space-y-1' : 'mb-6 space-y-1.5'}`}>
-        <div className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-800 bg-emerald-50 w-fit px-2.5 py-0.5 border border-emerald-200">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-          <span>Agent RERA: {AGENT_RERA_NUMBER}</span>
-        </div>
-
         <h3 className={`${compact ? 'font-serif text-lg sm:text-xl font-bold text-[#305d3f] pt-0.5' : 'font-serif text-xl sm:text-2xl font-bold text-[#305d3f] pt-1'}`}>
           {title}
         </h3>
@@ -390,7 +385,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
               className="mt-0.5 rounded-none text-[#305d3f] focus:ring-[#305d3f] border-slate-300"
             />
             <span>
-              I consent to GreenNest Realtors (Agent RERA: {AGENT_RERA_NUMBER}) contacting me with verified project details in accordance with the{' '}
+              I consent to GreenNest Realtors contacting me with verified project details in accordance with the{' '}
               <a href="/privacy-policy" className="underline text-[#305d3f]">
                 Privacy Policy
               </a>

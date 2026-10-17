@@ -1,7 +1,6 @@
 import React from 'react';
 import { Project } from '../../types';
 import { ArrowUpRight, MapPin, Building2, ShieldCheck, HelpCircle } from 'lucide-react';
-import { AGENT_RERA_NUMBER } from '../../data/projects';
 
 interface ProjectCardProps {
   project: Project;
@@ -88,7 +87,6 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
                 <span>RERA: Under Verification</span>
               </span>
             )}
-            <span className="text-[10px] text-slate-400 font-mono">Agent: {AGENT_RERA_NUMBER}</span>
           </div>
         </div>
 

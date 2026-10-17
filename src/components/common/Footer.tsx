@@ -36,9 +36,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <div className="flex items-center gap-2 pl-6 text-slate-300">
                 <span>Lead Advisor: {AGENT_NAME} (10 Years Advisory Experience)</span>
               </div>
-              <div className="flex items-center gap-2 pl-6 text-slate-300">
-                <span>Developer Relationship: Authorised Channel Partner</span>
-              </div>
               <div className="flex items-center gap-2 pl-6 pt-1">
                 <a
                   href="http://shalimarcorp.com/"
@@ -203,7 +200,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <strong className="text-white">Statutory UP-RERA Compliance & Consumer Notice:</strong> GreenNest Realtors operates under Uttar Pradesh Real Estate Regulatory Authority (UP-RERA) Agent Registration Certificate <strong>{AGENT_RERA_NUMBER}</strong> (Athar Mansoor). We exclusively market RERA-registered projects in Uttar Pradesh. RERA registration is a statutory consumer transparency mechanism; it does not constitute a guarantee of future capital returns, appreciation, rental yields, or risk-free transactions.
           </p>
           <p>
-            <strong className="text-white">Developer Relationship & Pricing Disclaimer:</strong> GreenNest Realtors acts as an Authorised Channel Partner for Shalimar Corp. All project information, layouts, architectural renderings, and pricing benchmarks are derived from official developer sources (<a href="http://shalimarcorp.com/" target="_blank" rel="noopener noreferrer" className="underline text-slate-300">shalimarcorp.com</a>) and regulatory filings. All final prices, taxes, availability, and legal terms are subject to written confirmation in the formal allotment letter.
+            <strong className="text-white">Developer Information & Pricing Disclaimer:</strong> All project information, layouts, architectural renderings, and pricing benchmarks are derived from official developer sources (<a href="http://shalimarcorp.com/" target="_blank" rel="noopener noreferrer" className="underline text-slate-300">shalimarcorp.com</a>) and regulatory filings. All final prices, taxes, availability, and legal terms are subject to written confirmation in the formal allotment letter.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-white/10 gap-4 text-center sm:text-left">
