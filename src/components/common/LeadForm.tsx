@@ -9,6 +9,7 @@ interface LeadFormProps {
   title?: string;
   subtitle?: string;
   onSuccess?: () => void;
+  onCancel?: () => void;
   compact?: boolean;
 }
 
@@ -18,6 +19,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   title = 'Request Project Details & Consultation',
   subtitle = `Direct consultation with ${AGENT_NAME}. UP-RERA Registered Agent: ${AGENT_RERA_NUMBER}.`,
   onSuccess,
+  onCancel,
   compact = false,
 }) => {
   const [formData, setFormData] = useState<LeadSubmissionPayload>({
@@ -145,20 +147,28 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             <Phone className="w-4 h-4" />
             <span>Call {AGENT_PHONE}</span>
           </a>
+          {onCancel && (
+            <button
+              onClick={onCancel}
+              className="inline-flex items-center justify-center border border-slate-300 text-slate-700 hover:bg-slate-100 text-sm font-medium py-2.5 px-4 transition-colors cursor-pointer"
+            >
+              Exit
+            </button>
+          )}
         </div>
       </div>
     );
   }
 
   return (
-    <div className={`bg-white border border-slate-200 shadow-sm ${compact ? 'p-5 sm:p-6' : 'p-6 sm:p-8'}`}>
-      <div className="mb-6 space-y-1.5">
+    <div className={`bg-white ${compact ? 'p-4 sm:p-6' : 'p-6 sm:p-8 border border-slate-200 shadow-sm'}`}>
+      <div className={`${compact ? 'mb-4 space-y-1' : 'mb-6 space-y-1.5'}`}>
         <div className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-800 bg-emerald-50 w-fit px-2.5 py-0.5 border border-emerald-200">
           <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
           <span>Agent RERA: {AGENT_RERA_NUMBER}</span>
         </div>
 
-        <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#305d3f] pt-1">
+        <h3 className={`${compact ? 'font-serif text-lg sm:text-xl font-bold text-[#305d3f] pt-0.5' : 'font-serif text-xl sm:text-2xl font-bold text-[#305d3f] pt-1'}`}>
           {title}
         </h3>
         <p className="text-xs sm:text-sm text-slate-600">
@@ -389,12 +399,21 @@ export const LeadForm: React.FC<LeadFormProps> = ({
           </label>
         </div>
 
-        {/* Submit Button */}
-        <div className="pt-2">
+        {/* Action Buttons */}
+        <div className="pt-2 flex flex-col-reverse sm:flex-row items-center gap-2.5">
+          {onCancel && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="w-full sm:w-auto px-5 py-3 border border-slate-300 text-slate-700 hover:text-slate-900 hover:bg-slate-100 font-medium text-xs sm:text-sm transition-colors cursor-pointer text-center"
+            >
+              Cancel & Exit
+            </button>
+          )}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#305d3f] hover:bg-[#23462f] text-white py-3.5 px-6 font-medium text-sm flex items-center justify-center gap-2 shadow-sm transition-all disabled:opacity-50"
+            className="flex-1 w-full bg-[#305d3f] hover:bg-[#23462f] text-white py-3 px-6 font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-all disabled:opacity-50 cursor-pointer"
           >
             {loading ? (
               <span>Recording Enquiry...</span>
