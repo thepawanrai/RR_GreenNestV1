@@ -18,8 +18,8 @@ export const NriCornerPage: React.FC<NriCornerPageProps> = ({ onNavigate, onOpen
       <div className="max-w-3xl space-y-4">
         <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#305d3f] font-semibold flex-wrap">
           <span className="flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Agent RERA: {AGENT_RERA_NUMBER}</span>
+            <Globe2 className="w-3.5 h-3.5 text-emerald-700" />
+            <span>Dedicated Overseas Buyer Desk</span>
           </span>
           <span aria-hidden="true" className="text-slate-300">·</span>
           <span>Overseas & Out-of-City Advisory Desk</span>
@@ -161,7 +161,7 @@ export const NriCornerPage: React.FC<NriCornerPageProps> = ({ onNavigate, onOpen
             Schedule an NRI Virtual Consultation
           </h3>
           <p className="text-xs text-slate-600 leading-relaxed">
-            Fill out the consultation request with your overseas city and convenient time zone. {AGENT_NAME} (Agent RERA: {AGENT_RERA_NUMBER}) will coordinate an agenda and video meeting link.
+            Fill out the consultation request with your overseas city and convenient time zone. {AGENT_NAME} will coordinate an agenda and video meeting link.
           </p>
           <div className="pt-2">
             <a

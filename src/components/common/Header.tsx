@@ -54,8 +54,6 @@ export const Header: React.FC<HeaderProps> = ({
               <ShieldCheck className="w-3.5 h-3.5" />
               <span>Agent RERA: {AGENT_RERA_NUMBER}</span>
             </span>
-            <span className="hidden sm:inline text-white/40">·</span>
-            <span className="hidden sm:inline text-white/95">Authorised Channel Partner (Shalimar Corp.)</span>
           </div>
 
           <div className="flex items-center gap-4 text-xs font-medium">

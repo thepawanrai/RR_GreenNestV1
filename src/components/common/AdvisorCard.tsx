@@ -3,11 +3,18 @@ import { ShieldCheck, Phone, MessageCircle, Calendar, CheckCircle2, Award } from
 import { AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE } from '../../data/projects';
 
 interface AdvisorCardProps {
-  onBookConsultation: () => void;
+  onBookConsultation?: () => void;
+  onOpenConsultation?: () => void;
+  onViewProjects?: () => void;
 }
 
-export const AdvisorCard: React.FC<AdvisorCardProps> = ({ onBookConsultation }) => {
+export const AdvisorCard: React.FC<AdvisorCardProps> = ({
+  onBookConsultation,
+  onOpenConsultation,
+  onViewProjects,
+}) => {
   const [imgError, setImgError] = useState(false);
+  const handleConsult = onBookConsultation || onOpenConsultation || (() => {});
 
   return (
     <div className="bg-white border border-slate-200 p-6 sm:p-8 relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
@@ -39,15 +46,11 @@ export const AdvisorCard: React.FC<AdvisorCardProps> = ({ onBookConsultation }) 
               <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#305d3f]">
                 {AGENT_NAME}
               </h3>
-              <div className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5 text-xs font-semibold">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-                <span>UP-RERA Agent: {AGENT_RERA_NUMBER}</span>
-              </div>
             </div>
 
             <div className="text-xs text-slate-600 space-y-1">
               <p className="font-medium text-slate-800 flex items-center gap-1.5">
-                <span>Senior Real Estate Advisor · 10 Years Dedicated Lucknow Advisory</span>
+                <span>Senior Real Estate Advisor · 15 Years Dedicated Lucknow Advisory</span>
               </p>
 
               <div className="inline-flex items-center gap-1.5 text-amber-800 bg-amber-50 border border-amber-200/80 px-2 py-0.5 rounded-xs font-medium text-[11px]">
@@ -61,7 +64,7 @@ export const AdvisorCard: React.FC<AdvisorCardProps> = ({ onBookConsultation }) 
         {/* Action buttons */}
         <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
           <button
-            onClick={onBookConsultation}
+            onClick={handleConsult}
             className="flex-1 md:flex-initial inline-flex items-center justify-center gap-2 bg-[#305d3f] hover:bg-[#23462f] text-white text-sm font-medium py-3 px-5 transition-colors shadow-sm cursor-pointer"
           >
             <Calendar className="w-4 h-4 text-[#C8AD78]" />

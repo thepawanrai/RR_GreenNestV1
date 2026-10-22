@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PROJECTS, AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE } from '../data/projects';
+import { PROJECTS, AGENT_NAME, AGENT_PHONE } from '../data/projects';
 import { ARTICLES } from '../data/articles';
 import { FAQS } from '../data/faqs';
 import { ProjectCard } from '../components/common/ProjectCard';
@@ -19,8 +19,9 @@ import {
   ChevronLeft,
   ChevronRight,
   MessageCircle,
+  Calendar,
   Sparkles,
-  ExternalLink
+  MapPin
 } from 'lucide-react';
 
 interface HomePageProps {
@@ -28,48 +29,49 @@ interface HomePageProps {
   onOpenConsultation: (projectSlug?: string, projectName?: string) => void;
 }
 
+// 3 Main Flagship Projects as explicitly instructed by the user
 const HERO_SLIDES = [
   {
-    id: 'shalimar-21',
-    slug: 'shalimar-21',
-    projectName: 'Shalimar 21 (Twenty One)',
-    tagline: 'Ultra-Private 3 & 4 BHK Riverfront Residences',
-    highlight: 'Strictly 2 Residences Per Floor · 4 Signature Towers (G+28)',
+    id: 'shalimar-oneworld',
+    slug: 'shalimar-oneworld',
+    projectName: 'Shalimar OneWorld',
+    tagline: '212-Acre Master-Planned Lakefront & Riverfront Township',
+    highlight: '1.5-Acre Lake Promenade · Club One Grand Clubhouse · Luxury Towers & Villas',
     rera: 'UPRERAPRJ858081/05/2024',
-    price: 'Starting ₹2.35 Crore*',
+    price: 'Starting ₹1.45 Crore*',
     image: '/images/projects/shalimar-21-banner.jpg',
-    location: 'Sector 6, Shalimar OneWorld, Gomti Nagar Extension',
+    location: 'Sector 6, Amar Shaheed Path, Gomti Nagar Extension, Lucknow',
     counter: '01 / 03',
-    badge: 'Signature Riverfront Enclave',
-    ctaText: 'Explore Shalimar 21'
+    badge: '212-Acre Riverfront Township',
+    developer: 'Shalimar Group'
   },
   {
-    id: 'shalimar-marbella',
-    slug: 'shalimar-marbella',
-    projectName: 'Shalimar Marbella',
-    tagline: 'Mediterranean Grandeur & Riverfront Coastal Living',
-    highlight: '33 Storey Towers · 2, 2+Study & 3 BHK + Servant · 18+ Amenities',
-    rera: 'UPRERAPRJ460592/05/2024',
-    price: 'Indicative ₹1.30 – ₹1.60 Cr*',
-    image: '/images/projects/shalimar-marbella-banner.jpg',
-    location: 'Shalimar OneWorld, Gomti Nagar Extension',
+    id: 'ksmb-the-royal-retreat',
+    slug: 'ksmb-the-royal-retreat',
+    projectName: 'KSMB The Royal Retreat',
+    tagline: 'Epitome of Luxury · Crafted Exclusively for You',
+    highlight: '4 Exclusive Blocks · 162 Residences & 6 Sky Villas · 2 Grand Clubhouses',
+    rera: 'UP-RERA Registered / Sanctioned',
+    price: 'Starting ₹1.95 Crore*',
+    image: '/images/projects/ksmb-royal-retreat-hero.jpg',
+    location: 'Just off Amar Shaheed Path, Gomti Nagar Extension, Lucknow',
     counter: '02 / 03',
-    badge: 'Spanish & Mediterranean Architecture',
-    ctaText: 'Explore Shalimar Marbella'
+    badge: 'Royal Architectural Sanctuary',
+    developer: 'KSMB Group'
   },
   {
-    id: 'shalimar-valencia-towers-phase-2',
-    slug: 'shalimar-valencia-towers-phase-2',
-    projectName: 'Shalimar Valencia Towers (Phase 2)',
-    tagline: 'Palatial 4 BHK + Study Residences Overlooking the Lake',
-    highlight: 'Approx. 1,900 sq ft Carpet Area · Only 132 Units/Tower · 26+ Amenities',
-    rera: 'UPRERAPRJ944626/09/2024',
-    price: 'Starting ₹2.75 Crore*',
-    image: '/images/projects/shalimar-valencia-towers-phase-2-banner.jpg',
-    location: 'Sector 5, Shalimar OneWorld, Gomti Nagar Extension',
+    id: 'emaar-elite-oasis',
+    slug: 'emaar-elite-oasis',
+    projectName: 'EMAAR Elite Oasis',
+    tagline: 'An Oasis of Serenity · Global Luxury Living in Gomti Nagar Extension',
+    highlight: '3 & 4 BHK Luxury Residences & Penthouses · World-Class Master Community',
+    rera: 'UP-RERA Registered',
+    price: 'Starting ₹2.10 Crore*',
+    image: '/images/projects/emaar-elite-oasis-hero.jpg',
+    location: 'Gomti Nagar Extension, Lucknow',
     counter: '03 / 03',
-    badge: 'Lake Promenade Luxury',
-    ctaText: 'Explore Valencia Towers'
+    badge: 'Global Luxury Benchmark',
+    developer: 'Emaar India'
   }
 ];
 
@@ -81,229 +83,201 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  // Auto-play timer for hero slider
+  // Auto-play timer for hero slider (6 seconds, pauses on hover)
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 5500);
+    }, 6000);
     return () => clearInterval(timer);
   }, [isPaused]);
 
   const activeSlide = HERO_SLIDES[currentSlide];
 
   return (
-    <div className="space-y-20 sm:space-y-28 bg-white">
-      {/* 1. HERO SECTION (Polar White Canvas with 3-Slide Interactive Showcase) */}
-      <section className="relative pt-10 pb-16 sm:pt-16 sm:pb-24 overflow-hidden border-b border-slate-200 bg-gradient-to-b from-slate-50 via-white to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-            {/* Left Content */}
-            <div className="lg:col-span-6 space-y-6">
-              <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#305d3f] font-semibold flex-wrap">
-                <span className="text-slate-600">Curated Real Estate Advisory · Lucknow</span>
+    <div className="space-y-16 sm:space-y-24 bg-white">
+      {/* 1. CINEMATIC FULL-SECTION HERO SLIDER (Whole Image + Full Details) */}
+      <section 
+        className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] flex items-end overflow-hidden bg-slate-950 text-white"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
+        {/* Full-width Background Image Slides with Crossfade */}
+        {HERO_SLIDES.map((slide, idx) => (
+          <div
+            key={slide.id}
+            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+              currentSlide === idx ? 'opacity-100 z-0' : 'opacity-0 -z-10'
+            }`}
+          >
+            <img
+              src={slide.image}
+              alt={`${slide.projectName} - ${slide.tagline}`}
+              className="w-full h-full object-cover object-center"
+            />
+            {/* Multi-tier luxury scrims for maximum legibility */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/30" />
+            <div className="absolute inset-0 bg-radial from-transparent via-transparent to-black/40" />
+          </div>
+        ))}
+
+        {/* Content Container Overlaid at the Bottom of the Full Section */}
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 sm:pb-14 pt-28">
+          <div className="space-y-4 max-w-4xl">
+            {/* Badges: Category, RERA, Developer */}
+            <div className="flex items-center gap-2.5 flex-wrap">
+              <span className="bg-[#305d3f] text-white text-xs font-semibold px-3 py-1 uppercase tracking-wider shadow-sm">
+                {activeSlide.badge}
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur-md text-white border border-white/25 text-xs font-medium px-3 py-1 font-mono">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#C8AD78]" />
+                <span>RERA: {activeSlide.rera}</span>
+              </span>
+              <span className="text-xs text-[#EAD8B2] font-semibold tracking-wider uppercase">
+                {activeSlide.developer}
+              </span>
+            </div>
+
+            {/* Monumental Headline */}
+            <h1 className="font-serif text-3xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.12]">
+              {activeSlide.projectName}
+            </h1>
+
+            {/* Subtitle / Tagline */}
+            <p className="text-base sm:text-xl text-[#EAD8B2] font-light leading-relaxed max-w-3xl">
+              {activeSlide.tagline}
+            </p>
+
+            {/* Key Highlight & Location */}
+            <div className="flex flex-wrap items-center gap-4 text-xs sm:text-sm text-slate-200 pt-1">
+              <div className="flex items-center gap-1.5">
+                <MapPin className="w-4 h-4 text-[#C8AD78] shrink-0" />
+                <span>{activeSlide.location}</span>
+              </div>
+              <span className="text-white/40 hidden sm:inline">·</span>
+              <span className="text-slate-300 hidden sm:inline">{activeSlide.highlight}</span>
+            </div>
+
+            {/* Benchmark Price and Action Bar */}
+            <div className="pt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/20">
+              <div className="space-y-0.5">
+                <span className="text-[11px] uppercase tracking-wider text-slate-300 font-semibold block">
+                  Indicative Starting Benchmark
+                </span>
+                <div className="font-serif text-2xl sm:text-3xl font-bold text-[#C8AD78]">
+                  {activeSlide.price}
+                </div>
               </div>
 
-              <h1 className="font-serif text-3xl sm:text-5xl lg:text-5.5xl font-bold text-[#305d3f] leading-[1.14] tracking-tight">
-                The Right Home Isn’t Found in Endless Listings.{' '}
-                <span className="italic font-normal text-[#9E8043]">
-                  It’s Found Through Better Selection.
-                </span>
-              </h1>
-
-              <p className="text-base sm:text-lg text-slate-700 leading-relaxed max-w-xl font-light">
-                Explore a carefully selected portfolio of residential and investment opportunities in Lucknow, with clear project information and personal guidance from GreenNest Realtors.
-              </p>
-
-              {/* Action Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row gap-4">
+              <div className="flex items-center gap-3 flex-wrap">
                 <button
-                  onClick={() => onNavigate('/projects')}
-                  className="inline-flex items-center justify-center gap-2 bg-[#305d3f] hover:bg-[#23462f] text-white text-base font-medium py-3.5 px-7 transition-all shadow-sm"
+                  onClick={() => onNavigate(`/projects/${activeSlide.slug}`)}
+                  className="inline-flex items-center justify-center gap-2 bg-[#305d3f] hover:bg-[#23462f] text-white text-sm font-semibold py-3 px-6 transition-all shadow-md cursor-pointer border border-[#C8AD78]/30"
                 >
-                  <span>Explore Selected Projects</span>
+                  <span>Explore Project</span>
                   <ArrowRight className="w-4 h-4 text-[#C8AD78]" />
                 </button>
 
                 <button
-                  onClick={() => onOpenConsultation()}
-                  className="inline-flex items-center justify-center gap-2 border border-slate-300 text-slate-800 hover:text-[#305d3f] hover:border-[#305d3f] text-base font-medium py-3.5 px-6 transition-colors bg-white shadow-sm"
+                  onClick={() => onOpenConsultation(activeSlide.slug, activeSlide.projectName)}
+                  className="inline-flex items-center justify-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-md text-white text-sm font-medium py-3 px-5 transition-all border border-white/30 cursor-pointer"
                 >
-                  <span>Book a Private Consultation</span>
+                  <Calendar className="w-4 h-4 text-[#C8AD78]" />
+                  <span>Enquire Now</span>
+                </button>
+
+                <a
+                  href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                    `Hello ${AGENT_NAME}, I would like to know more about ${activeSlide.projectName}.`
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 bg-emerald-600/80 hover:bg-emerald-600 text-white text-sm font-medium py-3 px-4 transition-all"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span className="hidden sm:inline">WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Bottom Slider Navigation Tabs (01 Shalimar OneWorld, 02 The Royal Retreat, 03 Emaar Elite Oasis) */}
+            <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="flex items-center gap-2 w-full sm:w-auto overflow-x-auto pb-1">
+                {HERO_SLIDES.map((slide, idx) => (
+                  <button
+                    key={slide.id}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`px-3.5 py-2 text-xs transition-all text-left border cursor-pointer shrink-0 ${
+                      currentSlide === idx
+                        ? 'bg-white/25 border-[#C8AD78] text-white shadow-sm'
+                        : 'bg-black/30 hover:bg-black/50 border-white/10 text-white/70'
+                    }`}
+                  >
+                    <span className="font-mono text-[10px] text-[#C8AD78] block font-bold">0{idx + 1}</span>
+                    <span className="font-medium whitespace-nowrap">{slide.projectName}</span>
+                  </button>
+                ))}
+              </div>
+
+              {/* Prev / Next Controls */}
+              <div className="flex items-center gap-2 ml-auto">
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length)}
+                  className="p-2 bg-black/40 hover:bg-black/70 border border-white/20 text-white transition-colors cursor-pointer"
+                  aria-label="Previous Project"
+                >
+                  <ChevronLeft className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)}
+                  className="p-2 bg-black/40 hover:bg-black/70 border border-white/20 text-white transition-colors cursor-pointer"
+                  aria-label="Next Project"
+                >
+                  <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              {/* Verified Trust Strip under CTAs */}
-              <div className="pt-6 border-t border-slate-200 flex flex-wrap items-center gap-6 text-xs text-slate-600">
-                <div className="flex items-center gap-1.5 font-medium text-slate-800">
-                  <ShieldCheck className="w-4 h-4 text-[#305d3f]" />
-                  <span>100% RERA Registered Projects</span>
-                </div>
-                <div className="flex items-center gap-1.5 font-medium text-slate-800">
-                  <FileCheck2 className="w-4 h-4 text-[#305d3f]" />
-                  <span>Direct Developer Price Sheets</span>
-                </div>
-                <div className="flex items-center gap-1.5 font-medium text-slate-800">
-                  <Building className="w-4 h-4 text-[#305d3f]" />
-                  <span>Zero Buyer Brokerage Fee</span>
-                </div>
+      {/* 2. VALUE PROPOSITION STRIP BELOW HERO */}
+      <section className="bg-slate-50 border-b border-slate-200 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-xs text-slate-700">
+            <div className="flex items-center gap-3">
+              <ShieldCheck className="w-5 h-5 text-[#305d3f] shrink-0" />
+              <div>
+                <strong className="text-slate-900 block font-semibold">100% RERA Registered</strong>
+                <span className="text-slate-500">Only legally vetted developments</span>
               </div>
             </div>
-
-            {/* Right Hero: Three-Slide Hero Slider with Large Uncovered Official Shalimar Assets */}
-            <div 
-              className="lg:col-span-6 relative"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
-              <div className="relative mx-auto max-w-xl lg:max-w-none shadow-xl border border-slate-200 bg-white">
-                {/* Large Uncovered Image Container (No dark overlays covering the architecture) */}
-                <div className="h-[360px] sm:h-[420px] lg:h-[450px] overflow-hidden bg-slate-50 relative border-b border-slate-100">
-                  <img
-                    key={activeSlide.id}
-                    src={activeSlide.image}
-                    alt={`${activeSlide.projectName} - ${activeSlide.tagline}`}
-                    className="w-full h-full object-cover object-center transition-all duration-700 ease-out"
-                  />
-                  {/* Minimal top badges that do not obscure the building */}
-                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10 pointer-events-none">
-                    <span className="bg-[#305d3f]/95 backdrop-blur-xs text-white text-[11px] font-medium px-2.5 py-1 tracking-wider uppercase border border-white/20 shadow-xs">
-                      {activeSlide.badge}
-                    </span>
-                    <span className="bg-white/95 text-[#305d3f] text-xs font-mono font-bold px-2 py-0.5 border border-slate-200 shadow-xs">
-                      {activeSlide.counter}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Dedicated Polar White Details Tray completely below the image */}
-                <div className="p-5 bg-white space-y-3.5">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <div className="flex items-center gap-2 text-xs text-slate-500 font-medium">
-                        <span className="text-[#305d3f] font-semibold">Shalimar Corp.</span>
-                        <span>·</span>
-                        <span>{activeSlide.location}</span>
-                      </div>
-                      <h3 className="font-serif text-2xl font-bold text-[#305d3f] leading-snug pt-0.5">
-                        {activeSlide.projectName}
-                      </h3>
-                      <p className="text-xs text-slate-600 font-light mt-0.5">
-                        {activeSlide.highlight}
-                      </p>
-                    </div>
-
-                    <div className="text-right flex-shrink-0">
-                      <span className="text-sm sm:text-base font-bold text-[#305d3f] block">{activeSlide.price}</span>
-                      <span className="text-[10px] font-mono text-slate-500 block">RERA: {activeSlide.rera}</span>
-                    </div>
-                  </div>
-
-                  {/* Slider Controls & Direct Actions */}
-                  <div className="pt-3 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-                    {/* Slide Selector Indicators (01, 02, 03) */}
-                    <div className="flex items-center gap-1.5 w-full sm:w-auto">
-                      {HERO_SLIDES.map((slide, idx) => (
-                        <button
-                          key={slide.id}
-                          onClick={() => setCurrentSlide(idx)}
-                          className={`px-3 py-1 text-xs font-mono transition-all border cursor-pointer ${
-                            currentSlide === idx
-                              ? 'bg-[#305d3f] text-white border-[#305d3f] font-bold shadow-xs'
-                              : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border-slate-200'
-                          }`}
-                          title={slide.projectName}
-                        >
-                          0{idx + 1}
-                        </button>
-                      ))}
-
-                      <div className="flex items-center ml-2 border border-slate-200 divide-x divide-slate-200">
-                        <button
-                          onClick={() =>
-                            setCurrentSlide((prev) =>
-                              prev === 0 ? HERO_SLIDES.length - 1 : prev - 1
-                            )
-                          }
-                          className="p-1.5 text-slate-600 hover:text-[#305d3f] hover:bg-slate-50 transition-colors cursor-pointer"
-                          aria-label="Previous Slide"
-                        >
-                          <ChevronLeft className="w-4 h-4" />
-                        </button>
-                        <button
-                          onClick={() =>
-                            setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length)
-                          }
-                          className="p-1.5 text-slate-600 hover:text-[#305d3f] hover:bg-slate-50 transition-colors cursor-pointer"
-                          aria-label="Next Slide"
-                        >
-                          <ChevronRight className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* Actions for current slide */}
-                    <div className="flex items-center gap-2.5 w-full sm:w-auto justify-end">
-                      <button
-                        onClick={() => onNavigate(`/projects/${activeSlide.slug}`)}
-                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#305d3f] hover:text-[#23462f] hover:underline cursor-pointer"
-                      >
-                        <span>{activeSlide.ctaText}</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-[#9E8043]" />
-                      </button>
-                      <span className="text-slate-300">|</span>
-                      <a
-                        href={`https://wa.me/919235621921?text=${encodeURIComponent(
-                          `Hello Athar, I would like to enquire about ${activeSlide.projectName} (${activeSlide.rera}) in Gomti Nagar Extension.`
-                        )}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-700 hover:text-emerald-800"
-                      >
-                        <MessageCircle className="w-3.5 h-3.5" />
-                        <span>WhatsApp</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
+            <div className="flex items-center gap-3">
+              <FileCheck2 className="w-5 h-5 text-[#305d3f] shrink-0" />
+              <div>
+                <strong className="text-slate-900 block font-semibold">Direct Promoter Pricing</strong>
+                <span className="text-slate-500">Transparent builder price sheets</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Compass className="w-5 h-5 text-[#305d3f] shrink-0" />
+              <div>
+                <strong className="text-slate-900 block font-semibold">Curated Luxury Selection</strong>
+                <span className="text-slate-500">Hand-picked flagship projects</span>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <Building className="w-5 h-5 text-[#305d3f] shrink-0" />
+              <div>
+                <strong className="text-slate-900 block font-semibold">Zero Buyer Brokerage</strong>
+                <span className="text-slate-500">Unbiased advisory consultations</span>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 2. SUBSTANTIATED PROOF STRIP (Polar White with Deep Emerald Accent) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-[#305d3f] text-white p-8 sm:p-10 border border-[#23462f] shadow-md">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-white/10">
-            <div className="space-y-1 md:pr-6 pt-4 md:pt-0">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">10 Years</span>
-              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">Advisory Experience</p>
-              <p className="text-xs text-slate-200">Led by {AGENT_NAME} in Lucknow luxury developments.</p>
-            </div>
-
-            <div className="space-y-1 md:px-6 pt-4 md:pt-0">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">100%</span>
-              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">RERA-Registered</p>
-              <p className="text-xs text-slate-200">Only legally vetted residential developments in Gomti Nagar Ext.</p>
-            </div>
-
-            <div className="space-y-1 md:px-6 pt-4 md:pt-0">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">Direct</span>
-              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">Developer Pricing</p>
-              <p className="text-xs text-slate-200">Transparent builder price sheets and sanctioned floor layouts.</p>
-            </div>
-
-            <div className="space-y-1 md:pl-6 pt-4 md:pt-0">
-              <span className="font-serif text-3xl sm:text-4xl font-bold text-[#C8AD78]">Zero Fee</span>
-              <p className="text-xs text-slate-300 uppercase tracking-wider font-semibold">For Homebuyers</p>
-              <p className="text-xs text-slate-200">Advisory, site visits, and booking coordination provided at no brokerage cost.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. SHALIMAR ONEWORLD TOWNSHIP SPOTLIGHT (from shalimarcorp.com) */}
+      {/* 3. SHALIMAR ONEWORLD TOWNSHIP SPOTLIGHT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="bg-slate-50 border border-slate-200 p-8 sm:p-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
@@ -314,22 +288,20 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span>Gomti Nagar Extension, Lucknow</span>
               </div>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#305d3f]">
-                Shalimar OneWorld: A 212+ Acre Masterpiece
+                Shalimar OneWorld: A 212+ Acre Landmark
               </h2>
               <p className="text-sm text-slate-600 leading-relaxed font-light">
                 Designed by international master architects <strong>JT+Partners</strong> and <strong>42MM Architecture</strong>, Shalimar OneWorld is an LDA-approved self-sustained riverfront township combining premier residences, waterfront promenade, sports academies, and academic institutions.
               </p>
             </div>
 
-            <a
-              href="http://shalimarcorp.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#305d3f] hover:underline flex-shrink-0"
+            <button
+              onClick={() => onNavigate('/projects/shalimar-oneworld')}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#305d3f] hover:underline flex-shrink-0 cursor-pointer"
             >
-              <span>Explore on shalimarcorp.com</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
+              <span>View Shalimar OneWorld Details</span>
+              <ArrowRight className="w-3.5 h-3.5 text-[#C8AD78]" />
+            </button>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
@@ -364,31 +336,27 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 4. FEATURED SHALIMAR PROJECTS SHOWCASE */}
+      {/* 4. CURATED PROJECTS SHOWCASE */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200">
-          <div className="space-y-2 max-w-2xl">
-            <div className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
+          <div className="space-y-1.5">
+            <span className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
               Curated Portfolio
-            </div>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#305d3f]">
-              Selected Shalimar Corp. Projects
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900">
+              Selected Landmark Developments
             </h2>
-            <p className="text-sm text-slate-600">
-              A carefully selected portfolio of luxury apartments, private villa enclaves, and commercial suites in Gomti Nagar Extension and prime Lucknow corridors.
-            </p>
           </div>
 
           <button
             onClick={() => onNavigate('/projects')}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#305d3f] hover:text-[#23462f] transition-colors group"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#305d3f] hover:text-[#23462f] transition-colors cursor-pointer"
           >
-            <span>View All Curated Projects</span>
-            <ArrowRight className="w-4 h-4 text-[#C8AD78] group-hover:translate-x-1 transition-transform" />
+            <span>View All Projects</span>
+            <ArrowRight className="w-4 h-4 text-[#C8AD78]" />
           </button>
         </div>
 
-        {/* Project Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {PROJECTS.slice(0, 6).map((project) => (
             <ProjectCard
@@ -399,97 +367,63 @@ export const HomePage: React.FC<HomePageProps> = ({
             />
           ))}
         </div>
-
-        <div className="text-center pt-4">
-          <button
-            onClick={() => onNavigate('/projects')}
-            className="inline-flex items-center gap-2 bg-white hover:bg-slate-50 border border-slate-300 text-slate-800 text-sm font-medium py-3 px-8 transition-colors shadow-sm"
-          >
-            <span>Explore All 8 Selected Projects & Detailed RERA Disclosures</span>
-            <ArrowRight className="w-4 h-4 text-[#305d3f]" />
-          </button>
-        </div>
       </section>
 
-      {/* 5. VERIFIED CLIENT TESTIMONIALS & ENDORSEMENTS */}
-      <TestimonialsSection 
-        onNavigate={onNavigate}
-        onOpenConsultation={onOpenConsultation}
-      />
-
-      {/* 6. WHY GREENNEST (Curated Model Philosophy) */}
-      <section className="bg-slate-50 py-16 sm:py-24 border-y border-slate-200">
+      {/* 5. WHY GREENNEST (Curated Advisory Philosophy) */}
+      <section className="bg-slate-50 border-y border-slate-200 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 space-y-4">
               <span className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
-                Selection Philosophy
+                Our Advisory Standard
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#305d3f] leading-tight">
-                A Select Portfolio.{' '}
-                <span className="italic font-normal">A More Personal Approach.</span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900 leading-tight">
+                Why Selective Real Estate Beats Endless Listings
               </h2>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                We believe choosing a property should feel considered—not overwhelming. GreenNest focuses on a select portfolio of projects and helps you compare the details that matter, understand the next steps and arrange a site or virtual visit.
+              <p className="text-sm text-slate-600 leading-relaxed font-light">
+                Generic real estate aggregators drown buyers in thousands of unvetted options. At GreenNest, we intentionally limit our portfolio to hand-picked developments with clear legal titles and superior architectural execution.
               </p>
-              
               <div className="pt-2">
                 <button
                   onClick={() => onNavigate('/about')}
-                  className="inline-flex items-center gap-2 text-xs font-semibold text-[#305d3f] uppercase tracking-wider hover:underline"
+                  className="inline-flex items-center gap-2 text-xs font-semibold text-[#305d3f] hover:underline cursor-pointer"
                 >
-                  <span>Read About Our Selection Standards</span>
+                  <span>Learn about our selection criteria</span>
                   <ArrowRight className="w-3.5 h-3.5 text-[#C8AD78]" />
                 </button>
               </div>
             </div>
 
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div className="p-6 bg-white border border-slate-200 space-y-2.5 shadow-sm">
-                <div className="w-9 h-9 bg-[#305d3f] text-[#C8AD78] flex items-center justify-center font-bold text-sm">
-                  01
-                </div>
-                <h3 className="font-serif text-lg font-bold text-[#305d3f]">
-                  Curated Project Portfolio
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Instead of indexing hundreds of speculative developments, we deliberately shortlist verified projects with strong developer execution records.
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
+              <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-xs">
+                <ShieldCheck className="w-5 h-5 text-[#305d3f]" />
+                <h3 className="font-serif text-base font-bold text-slate-900">100% RERA Diligence</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  We check sanctioned layout blueprints, promoter encumbrance certificates, and escrow accounts before recommending any enclave.
                 </p>
               </div>
 
-              <div className="p-6 bg-white border border-slate-200 space-y-2.5 shadow-sm">
-                <div className="w-9 h-9 bg-[#305d3f] text-[#C8AD78] flex items-center justify-center font-bold text-sm">
-                  02
-                </div>
-                <h3 className="font-serif text-lg font-bold text-[#305d3f]">
-                  Verification-First Communication
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Every project fact, carpet area measurement, and RERA registration is verified before publication. We never fabricate pricing or inventory scarcity.
+              <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-xs">
+                <FileCheck2 className="w-5 h-5 text-[#305d3f]" />
+                <h3 className="font-serif text-base font-bold text-slate-900">Direct Promoter Pricing</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Zero hidden broker commissions. Buyers receive direct developer price sheets with transparent installment schedules.
                 </p>
               </div>
 
-              <div className="p-6 bg-white border border-slate-200 space-y-2.5 shadow-sm">
-                <div className="w-9 h-9 bg-[#305d3f] text-[#C8AD78] flex items-center justify-center font-bold text-sm">
-                  03
-                </div>
-                <h3 className="font-serif text-lg font-bold text-[#305d3f]">
-                  Personal Guidance
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Direct engagement with senior advisor Athar Mansoor, aligning choices with your family size, budget band, and long-term residency requirements.
+              <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-xs">
+                <Compass className="w-5 h-5 text-[#305d3f]" />
+                <h3 className="font-serif text-base font-bold text-slate-900">Sunlight & Floorplate Analysis</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  We evaluate apartment orientation, cross-ventilation, and view corridors to ensure long-term livability.
                 </p>
               </div>
 
-              <div className="p-6 bg-white border border-slate-200 space-y-2.5 shadow-sm">
-                <div className="w-9 h-9 bg-[#305d3f] text-[#C8AD78] flex items-center justify-center font-bold text-sm">
-                  04
-                </div>
-                <h3 className="font-serif text-lg font-bold text-[#305d3f]">
-                  Site & Virtual Visit Coordination
-                </h3>
-                <p className="text-xs text-slate-600 leading-relaxed">
-                  Seamless site arrangements at Shalimar OneWorld with private briefings, or live video walkthroughs for out-of-city and NRI buyers.
+              <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-xs">
+                <Building className="w-5 h-5 text-[#305d3f]" />
+                <h3 className="font-serif text-base font-bold text-slate-900">Personalized End-to-End Escort</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  Direct liaison with lead advisor Athar Mansoor from first site visit through allotment paperwork.
                 </p>
               </div>
             </div>
@@ -497,70 +431,10 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 6. "A MORE CONSIDERED WAY TO BUY" PROCESS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <span className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
-            Advisory Journey
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#305d3f]">
-            A More Considered Way to Buy
-          </h2>
-          <p className="text-sm text-slate-600">
-            A step-by-step advisory process designed to replace sales pressure with clarity, due diligence, and confidence.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-          <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-sm">
-            <span className="text-xs font-mono text-[#9E8043] font-bold">Step 1</span>
-            <h4 className="font-serif text-base font-bold text-[#305d3f]">Share Your Goals</h4>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              We discuss your family lifestyle, layout needs, budget preference, and timeline.
-            </p>
-          </div>
-
-          <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-sm">
-            <span className="text-xs font-mono text-[#9E8043] font-bold">Step 2</span>
-            <h4 className="font-serif text-base font-bold text-[#305d3f]">Shortlist Relevant Projects</h4>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              We filter down to 2 or 3 curated developments that genuinely fit your criteria.
-            </p>
-          </div>
-
-          <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-sm">
-            <span className="text-xs font-mono text-[#9E8043] font-bold">Step 3</span>
-            <h4 className="font-serif text-base font-bold text-[#305d3f]">Review Facts & Costs</h4>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Detailed inspection of RERA filings, true carpet area, floor rise, and all-inclusive costs.
-            </p>
-          </div>
-
-          <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-sm">
-            <span className="text-xs font-mono text-[#9E8043] font-bold">Step 4</span>
-            <h4 className="font-serif text-base font-bold text-[#305d3f]">Arrange Site / Virtual Visit</h4>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              In-person guided walkthrough or live video session with the advisor.
-            </p>
-          </div>
-
-          <div className="p-5 bg-white border border-slate-200 space-y-2 shadow-sm">
-            <span className="text-xs font-mono text-[#9E8043] font-bold">Step 5</span>
-            <h4 className="font-serif text-base font-bold text-[#305d3f]">Support with Next Steps</h4>
-            <p className="text-xs text-slate-600 leading-relaxed">
-              Transparent developer paperwork liaison, bank loan assistance, and booking facilitation.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* 7. ADVISOR PROFILE SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <AdvisorCard onBookConsultation={() => onOpenConsultation()} />
-
-        {/* Shalimar Excellence Summit Award Highlight */}
-        <div className="bg-gradient-to-br from-[#122318] via-[#1a3323] to-[#0f1f15] text-white p-6 sm:p-8 border border-[#305d3f] shadow-lg relative overflow-hidden">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center">
+      {/* 6. SHALIMAR EXCELLENCE SUMMIT AWARD SPOTLIGHT */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-[#1e3e2b] text-white p-8 sm:p-12 border border-[#305d3f] shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
             <div className="md:col-span-5">
               <div className="relative group overflow-hidden border-2 border-[#C8AD78]/60 shadow-xl bg-black">
                 <img
@@ -573,7 +447,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             <div className="md:col-span-7 space-y-3">
               <div className="inline-flex items-center gap-1.5 bg-[#C8AD78]/20 border border-[#C8AD78]/40 px-2.5 py-0.5 text-xs text-[#EAD8B2] font-semibold uppercase tracking-wider">
-                <span>Official Channel Partner Honour</span>
+                <span>Advisory Excellence Recognition</span>
               </div>
               <h3 className="font-serif text-xl sm:text-2xl font-bold text-white">
                 Awarded by Khalid Masood (MD, Shalimar Corp Ltd) at Shalimar Excellence Summit
@@ -595,7 +469,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 8. NRI & OUT-OF-CITY BUYER BLOCK */}
+      {/* 7. NRI & OUT-OF-CITY BUYER BLOCK */}
       <section className="bg-[#305d3f] text-white py-16 sm:py-20 border-y border-[#23462f]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -610,7 +484,7 @@ export const HomePage: React.FC<HomePageProps> = ({
               </h2>
 
               <p className="text-sm text-slate-200 leading-relaxed">
-                Overseas and out-of-city buyers face unique challenges: limited time for site inspections, time zone differences, and complex documentation. GreenNest bridges this distance with high-touch remote coordination under UP-RERA Agent Registration <strong>{AGENT_RERA_NUMBER}</strong>.
+                Overseas and out-of-city buyers face unique challenges: limited time for site inspections, time zone differences, and complex documentation. GreenNest bridges this distance with high-touch remote coordination and verified property advisory.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs text-slate-200">
@@ -624,31 +498,22 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
-                  <span>NRE / NRO banking channel document checklist</span>
+                  <span>NRE/NRO banking & repatriation assistance</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
-                  <span>Power of Attorney (PoA) guidance coordination</span>
+                  <span>Direct promoter allotment paperwork dispatch</span>
                 </div>
               </div>
 
-              <div className="pt-4 flex flex-wrap gap-4">
+              <div className="pt-4">
                 <button
                   onClick={() => onNavigate('/nri-corner')}
-                  className="bg-[#C8AD78] hover:bg-[#DFCDA6] text-[#23462f] text-xs font-semibold uppercase tracking-wider py-3 px-6 transition-colors inline-flex items-center gap-2 shadow-sm"
+                  className="inline-flex items-center gap-2 bg-[#C8AD78] hover:bg-[#b59a67] text-slate-950 text-xs font-semibold py-3 px-5 transition-colors cursor-pointer shadow-sm"
                 >
-                  <span>Explore NRI Assistance Corner</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>Visit NRI Advisory Desk</span>
+                  <ArrowRight className="w-4 h-4" />
                 </button>
-                <a
-                  href="https://wa.me/919235621921?text=Hello%20Athar,%20I%20am%20an%20NRI%20buyer%20interested%20in%20Lucknow%20property%20consultation."
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-[#C8AD78] text-[#C8AD78] hover:bg-white/5 text-xs font-semibold uppercase tracking-wider py-3 px-5 transition-colors inline-flex items-center gap-2"
-                >
-                  <MessageCircle className="w-3.5 h-3.5" />
-                  <span>WhatsApp NRI Desk</span>
-                </a>
               </div>
             </div>
 
@@ -657,187 +522,62 @@ export const HomePage: React.FC<HomePageProps> = ({
                 Clear Compliance Boundary
               </h3>
               <p className="text-xs text-slate-300 leading-relaxed">
-                GreenNest coordinates project selection, developer liaison, and on-ground verification. Please note that formal legal title searches, FEMA tax compliance, and DTAA structuring must be executed by qualified legal and tax practitioners. We provide the coordination checklist to discuss with your professional advisors.
+                GreenNest coordinates project selection, promoter liaison, and on-ground verification. Please note that formal legal title searches, FEMA tax compliance, and DTAA structuring must be executed by qualified legal and tax practitioners. We provide the coordination checklist to discuss with your professional advisors.
               </p>
-              <div className="pt-2 text-xs text-slate-400 border-t border-white/10 font-mono">
-                Agent RERA: {AGENT_RERA_NUMBER}
-              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* 9. BUYER RESOURCES & INSIGHTS SPOTLIGHT */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 pb-4 border-b border-slate-200">
-          <div className="space-y-1.5">
-            <span className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
-              Buyer Resources
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#305d3f]">
-              Knowledge Before Capital
-            </h2>
-            <p className="text-sm text-slate-600">
-              Clear, practical guides to help you make an informed property decision in Lucknow.
-            </p>
-          </div>
+      {/* 8. TESTIMONIALS */}
+      <TestimonialsSection onOpenConsultation={onOpenConsultation} />
 
-          <button
-            onClick={() => onNavigate('/insights')}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#305d3f] hover:underline"
-          >
-            <span>View All Insights & Guides</span>
-            <ArrowRight className="w-4 h-4 text-[#C8AD78]" />
-          </button>
+      {/* 9. FREQUENTLY ASKED QUESTIONS */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+        <div className="text-center space-y-2">
+          <span className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
+            Clear Answers
+          </span>
+          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-slate-900">
+            Frequently Asked Questions
+          </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {ARTICLES.slice(0, 3).map((article) => (
-            <article
-              key={article.slug}
-              className="bg-white border border-slate-200 p-6 flex flex-col justify-between space-y-4 hover:border-[#305d3f]/40 transition-colors shadow-sm"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-xs text-slate-500">
-                  <span>{article.category}</span>
-                  <span aria-hidden="true">·</span>
-                  <span>{article.readTime}</span>
+        <div className="space-y-3 pt-4">
+          {FAQS.slice(0, 5).map((faq, idx) => (
+            <div key={idx} className="border border-slate-200 bg-white">
+              <button
+                onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                className="w-full text-left p-4 sm:p-5 flex items-center justify-between gap-4 font-serif text-base sm:text-lg font-semibold text-slate-900 hover:text-[#305d3f] transition-colors cursor-pointer"
+              >
+                <span>{faq.question}</span>
+                <ChevronDown className={`w-5 h-5 text-slate-500 transition-transform ${openFaqIndex === idx ? 'rotate-180 text-[#305d3f]' : ''}`} />
+              </button>
+              {openFaqIndex === idx && (
+                <div className="px-4 pb-5 sm:px-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                  {faq.answer}
                 </div>
-                <h3 className="font-serif text-xl font-bold text-[#305d3f] leading-snug">
-                  {article.title}
-                </h3>
-                <p className="text-xs text-slate-600 line-clamp-3 leading-relaxed">
-                  {article.excerpt}
-                </p>
-              </div>
-
-              <div className="pt-2 border-t border-slate-100">
-                <button
-                  onClick={() => onNavigate(`/insights/${article.slug}`)}
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#305d3f] hover:text-[#23462f] focus:outline-none"
-                >
-                  <span>Read Article</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#C8AD78]" />
-                </button>
-              </div>
-            </article>
+              )}
+            </div>
           ))}
         </div>
       </section>
 
-      {/* 10. FREQUENTLY ASKED QUESTIONS */}
-      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="text-center space-y-2">
-          <span className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
-            Common Inquiries
-          </span>
-          <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#305d3f]">
-            Frequently Asked Questions
-          </h2>
-          <p className="text-sm text-slate-600">
-            Transparent answers regarding project selection, RERA compliance, channel partner status, and pricing.
-          </p>
-        </div>
-
-        <div className="space-y-3">
-          {FAQS.slice(0, 5).map((faq, index) => {
-            const isOpen = openFaqIndex === index;
-            return (
-              <div
-                key={index}
-                className="bg-white border border-slate-200 transition-colors shadow-sm"
-              >
-                <button
-                  onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                  className="w-full text-left p-5 flex items-center justify-between gap-4 focus:outline-none"
-                  aria-expanded={isOpen}
-                >
-                  <span className="font-serif text-base sm:text-lg font-semibold text-[#305d3f]">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-[#C8AD78] flex-shrink-0 transition-transform duration-200 ${
-                      isOpen ? 'transform rotate-180' : ''
-                    }`}
-                  />
-                </button>
-
-                {isOpen && (
-                  <div className="px-5 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        <div className="text-center pt-2">
-          <button
-            onClick={() => onNavigate('/faqs')}
-            className="text-xs font-semibold text-[#305d3f] hover:underline"
-          >
-            Have more questions? View Complete FAQ Hub →
-          </button>
-        </div>
+      {/* 10. LEAD CONSULTATION FORM */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <LeadForm
+          title="Schedule a Private Consultation"
+          subtitle="Speak with lead advisor Athar Mansoor for curated Lucknow property shortlisting."
+          onSuccess={() => {}}
+        />
       </section>
 
-      {/* 11. FINAL CONSULTATION & LEAD SECTION */}
-      <section id="consultation-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div className="lg:col-span-5 space-y-4">
-            <span className="text-xs uppercase tracking-widest text-[#305d3f] font-semibold">
-              Get Started
-            </span>
-            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#305d3f] leading-tight">
-              Let’s Narrow the Search to the Projects That Fit You.
-            </h2>
-            <p className="text-sm text-slate-600 leading-relaxed font-light">
-              Tell us what you’re looking for. We’ll help you explore the relevant options, review verified all-inclusive cost sheets, and arrange the next step.
-            </p>
-
-            <div className="pt-4 space-y-3 text-xs text-slate-700">
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#305d3f] flex-shrink-0 mt-0.5" />
-                <span>Direct consultation with {AGENT_NAME} ({AGENT_PHONE}).</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#305d3f] flex-shrink-0 mt-0.5" />
-                <span>UP-RERA Registered Agent Reference: <strong>{AGENT_RERA_NUMBER}</strong>.</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#305d3f] flex-shrink-0 mt-0.5" />
-                <span>Zero buyer brokerage or consulting charges.</span>
-              </div>
-              <div className="flex items-start gap-2.5">
-                <CheckCircle2 className="w-4 h-4 text-[#305d3f] flex-shrink-0 mt-0.5" />
-                <span>Verified RERA documentation and sanctioned layout review.</span>
-              </div>
-            </div>
-
-            <div className="p-4 bg-slate-50 border border-slate-200 mt-6 space-y-2">
-              <p className="text-xs font-semibold text-[#305d3f] uppercase tracking-wider">
-                Prefer immediate messaging?
-              </p>
-              <a
-                href="https://wa.me/919235621921?text=Hello%20GreenNest%20Realtors,%20I%20would%20like%20to%20connect%20regarding%20Lucknow%20property%20consultation."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-[#305d3f] hover:text-[#23462f]"
-              >
-                <MessageCircle className="w-4 h-4 text-[#305d3f]" />
-                <span>Message on WhatsApp: +91 92356 21921</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7">
-            <LeadForm
-              title="Book a Private Consultation"
-              subtitle="Share your goals and receive curated, verified project recommendations."
-            />
-          </div>
-        </div>
+      {/* 11. ADVISOR PROFILE */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+        <AdvisorCard
+          onOpenConsultation={() => onOpenConsultation()}
+          onViewProjects={() => onNavigate('/projects')}
+        />
       </section>
     </div>
   );

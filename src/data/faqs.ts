@@ -9,12 +9,12 @@ export const FAQS: FAQItem[] = [
   {
     category: 'Advisory & GreenNest Model',
     question: 'Does GreenNest charge a brokerage or consultation fee to homebuyers?',
-    answer: 'No. GreenNest serves as an Authorised Channel Partner for developers. Our project advisory, site visit arrangements, unit shortlisting, and booking coordination services are provided with zero advisory fee or brokerage charged to the homebuyer.'
+    answer: 'No. GreenNest provides boutique real estate consulting. Our project advisory, site visit arrangements, unit shortlisting, and booking coordination services are provided with zero advisory fee or brokerage charged to the homebuyer.'
   },
   {
     category: 'Advisory & GreenNest Model',
     question: 'Who is the advisor behind GreenNest Realtors?',
-    answer: 'GreenNest is led by Athar Mansoor, a real estate professional with 10 years of experience in Lucknow’s premium residential and commercial sectors. Our channel partner registration reference under UP-RERA is UPRERAAGT000016/07/2025.'
+    answer: 'GreenNest is led by Athar Mansoor, a real estate professional with 15 years of experience in Lucknow’s premium residential and commercial sectors.'
   },
   {
     category: 'RERA & Compliance',

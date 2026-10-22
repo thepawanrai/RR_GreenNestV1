@@ -47,14 +47,14 @@ export const DisclaimerPage: React.FC<DisclaimerPageProps> = ({ onNavigate }) =>
           </p>
         </section>
 
-        {/* Channel Partner Relationship */}
+        {/* Developer Relationship */}
         <section className="bg-slate-50 border border-slate-200 p-6 space-y-3 shadow-sm">
           <div className="flex items-center gap-2 text-[#305d3f] font-serif font-bold text-lg">
             <ShieldCheck className="w-5 h-5 text-[#C8AD78]" />
-            <h2>2. Developer Relationship Disclosure</h2>
+            <h2>2. Developer Disclosures & Promoter Filings</h2>
           </div>
           <p>
-            GreenNest Realtors acts as a Authorised Channel Partner for Shalimar Corp. All project information, layouts, architectural renderings, and pricing benchmarks are derived from official developer sources (<a href="http://shalimarcorp.com/" target="_blank" rel="noopener noreferrer" className="underline text-slate-800">shalimarcorp.com</a>) and regulatory filings. We do not claim exclusive or sole marketing rights unless supported by a formal written agreement. The official developer entities remain solely responsible for project construction, sanction compliances, structural warranties, and contractual possession milestones.
+            All project information, layouts, architectural renderings, and pricing benchmarks displayed on this website are derived from official promoter filings, sanction plans, brochures, and regulatory disclosures. We do not claim exclusive or sole marketing rights unless supported by a formal written agreement. The respective developer entities remain solely responsible for project construction, sanction compliances, structural warranties, and contractual possession milestones.
           </p>
         </section>
 

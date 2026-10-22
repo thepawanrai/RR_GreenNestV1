@@ -18,10 +18,10 @@ export const BuyersGuidePage: React.FC<BuyersGuidePageProps> = ({ onNavigate, on
         <div className="flex items-center gap-2 text-xs uppercase tracking-widest text-[#305d3f] font-semibold flex-wrap">
           <span className="flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-0.5">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
-            <span>Agent RERA: {AGENT_RERA_NUMBER}</span>
+            <span>UP-RERA Buyer Due Diligence</span>
           </span>
           <span aria-hidden="true" className="text-slate-300">·</span>
-          <span>Consumer Education & Due Diligence</span>
+          <span>Consumer Education & Legal Protections</span>
         </div>
         <h1 className="font-serif text-3xl sm:text-5xl font-bold text-[#305d3f] leading-tight">
           The Lucknow Homebuyer’s Due Diligence Guide
@@ -116,39 +116,100 @@ export const BuyersGuidePage: React.FC<BuyersGuidePageProps> = ({ onNavigate, on
             Actionable Checklist
           </span>
           <h2 className="font-serif text-2xl sm:text-3xl font-bold">
-            Five Pre-Token Verification Steps
+            Seven Pre-Token Verification Steps
           </h2>
+          <p className="text-xs text-slate-200 font-light">
+            Essential due diligence verifications before signing booking sheets or transferring token deposits:
+          </p>
         </div>
 
-        <div className="space-y-3 text-xs text-slate-200">
+        <div className="space-y-3.5 text-xs text-slate-200">
           <div className="flex items-start gap-3">
             <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
-            <span><strong>Verify UP-RERA Status:</strong> Ensure the exact tower you are selecting is actively registered on up-rera.in with valid dates.</span>
+            <div>
+              <strong>1. Verify Builder Identity & Project Details on RERA Website:</strong>{' '}
+              <span>
+                Validate the promoter's registered company identity, sanctioned tower configurations, quarterly progress filings, and valid registration dates directly on the official UP-RERA portal (
+                <a
+                  href="https://www.up-rera.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#C8AD78] underline hover:text-[#DFCDA6]"
+                >
+                  https://www.up-rera.in
+                </a>
+                ).
+              </span>
+            </div>
           </div>
+
           <div className="flex items-start gap-3">
             <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
-            <span><strong>Review Sanctioned Floor Plans:</strong> Ensure the layout matches authority approved drawings, not merely marketing brochures.</span>
+            <div>
+              <strong>2. Verify Title of Project Land:</strong>{' '}
+              <span>
+                Confirm clear, marketable land title, verify the chain of ownership deeds, check the non-encumbrance certificate (EC), and ensure lawful non-agricultural / group housing land-use conversion without ongoing litigation.
+              </span>
+            </div>
           </div>
+
           <div className="flex items-start gap-3">
             <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
-            <span><strong>Demand Written Allotment Terms:</strong> Reconfirm transfer charges, possession penalty clauses, and car parking allocation terms.</span>
+            <div>
+              <strong>3. Review Sanctioned Floor Plans:</strong>{' '}
+              <span>
+                Ensure the exact unit layout, carpet dimensions, and tower placement conform strictly to authority-approved blueprints, not merely artistic marketing renderings.
+              </span>
+            </div>
           </div>
+
           <div className="flex items-start gap-3">
             <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
-            <span><strong>Check Bank Approvals:</strong> Confirm project APF (Approved Project Financial) codes with SBI, HDFC, or ICICI.</span>
+            <div>
+              <strong>4. Demand Written Allotment Terms:</strong>{' '}
+              <span>
+                Reconfirm transfer charges, possession delay compensation clauses, club membership charges, and car parking allocation terms in writing prior to payment.
+              </span>
+            </div>
           </div>
+
           <div className="flex items-start gap-3">
             <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
-            <span><strong>Inspect Escrow Account Details:</strong> Make all booking transfers strictly to the project's designated RERA bank account.</span>
+            <div>
+              <strong>5. Check Bank Approvals (APF Codes):</strong>{' '}
+              <span>
+                Confirm Approved Project Financial (APF) codes with premier lenders like SBI, HDFC, or ICICI to confirm independent banking due diligence on title and sanctions.
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
+            <div>
+              <strong>6. Inspect Escrow Account Details:</strong>{' '}
+              <span>
+                Ensure all booking and milestone transfers are executed strictly in favor of the project's designated UP-RERA registered escrow bank account.
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
+            <div>
+              <strong>7. Cross-Check Carpet Area & Loading Ratio:</strong>{' '}
+              <span>
+                Always compute cost on the basis of statutory RERA net usable carpet area rather than ambiguous super built-up claims to evaluate true per-square-foot valuation.
+              </span>
+            </div>
           </div>
         </div>
 
         <div className="pt-2">
           <button
             onClick={onOpenConsultation}
-            className="bg-[#C8AD78] hover:bg-[#DFCDA6] text-[#23462f] text-xs font-semibold uppercase tracking-wider py-3 px-6 transition-colors shadow-sm"
+            className="bg-[#C8AD78] hover:bg-[#DFCDA6] text-[#23462f] text-xs font-semibold uppercase tracking-wider py-3 px-6 transition-colors shadow-sm cursor-pointer"
           >
-            Review Curated Projects with Advisor {AGENT_NAME} (RERA: {AGENT_RERA_NUMBER})
+            Review Curated Projects with Advisor {AGENT_NAME}
           </button>
         </div>
       </div>

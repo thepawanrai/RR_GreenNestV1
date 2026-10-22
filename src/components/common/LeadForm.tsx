@@ -394,21 +394,12 @@ export const LeadForm: React.FC<LeadFormProps> = ({
           </label>
         </div>
 
-        {/* Action Buttons */}
-        <div className="pt-2 flex flex-col-reverse sm:flex-row items-center gap-2.5">
-          {onCancel && (
-            <button
-              type="button"
-              onClick={onCancel}
-              className="w-full sm:w-auto px-5 py-3 border border-slate-300 text-slate-700 hover:text-slate-900 hover:bg-slate-100 font-medium text-xs sm:text-sm transition-colors cursor-pointer text-center"
-            >
-              Cancel & Exit
-            </button>
-          )}
+        {/* Submit Button */}
+        <div className="pt-2">
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 w-full bg-[#305d3f] hover:bg-[#23462f] text-white py-3 px-6 font-medium text-xs sm:text-sm flex items-center justify-center gap-2 shadow-sm transition-all disabled:opacity-50 cursor-pointer"
+            className="w-full bg-[#305d3f] hover:bg-[#23462f] text-white py-3.5 px-6 font-medium text-sm flex items-center justify-center gap-2 shadow-sm transition-all disabled:opacity-50 cursor-pointer"
           >
             {loading ? (
               <span>Recording Enquiry...</span>

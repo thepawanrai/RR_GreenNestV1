@@ -102,7 +102,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
         {/* Results count & compliance reminder */}
         <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-200">
           <span>Showing {filteredProjects.length} of {PROJECTS.length} curated developments</span>
-          <span className="hidden sm:inline">Official Developer Source: <a href="http://shalimarcorp.com/" target="_blank" rel="noopener noreferrer" className="underline text-slate-700">shalimarcorp.com</a></span>
+          <span className="hidden sm:inline">100% RERA Registered Portfolio</span>
         </div>
       </div>
 
@@ -148,7 +148,7 @@ export const ProjectsPage: React.FC<ProjectsPageProps> = ({
           </h3>
         </div>
         <p className="text-xs text-slate-200 leading-relaxed">
-          GreenNest Realtors evaluates projects based on legal title clearances, sanctioned authority layout approvals, and master-planned township integration. As a Authorised Channel Partner of Shalimar Corp., all price sheets, sanctioned floorplans, and brochures are derived directly from official promoter records.
+          GreenNest Realtors evaluates projects based on legal title clearances, sanctioned authority layout approvals, and master-planned township integration. All price sheets, sanctioned floorplans, and brochures are derived directly from official promoter records.
         </p>
       </div>
     </div>

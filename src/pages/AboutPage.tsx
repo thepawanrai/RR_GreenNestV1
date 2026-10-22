@@ -82,8 +82,8 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
             <div className="flex items-start gap-3">
               <Building2 className="w-5 h-5 text-[#305d3f] flex-shrink-0 mt-0.5" />
               <div>
-                <strong className="text-[#305d3f] block font-sans text-sm">4. Authorised Channel Partner Standing</strong>
-                We work directly with premier developers like Shalimar Corp. (source: <a href="http://shalimarcorp.com/" target="_blank" rel="noopener noreferrer" className="underline text-[#305d3f]">shalimarcorp.com</a>) to provide direct inventory pricing with zero buyer brokerage fees.
+                <strong className="text-[#305d3f] block font-sans text-sm">4. Direct Promoter Inventory & Transparent Pricing</strong>
+                We work directly with leading developers to provide direct inventory pricing with zero buyer brokerage fees.
               </div>
             </div>
           </div>
@@ -130,7 +130,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
             <div className="lg:col-span-8 space-y-5 text-sm text-slate-700 leading-relaxed font-light">
               <div className="space-y-2">
                 <span className="text-xs font-semibold uppercase tracking-wider text-[#305d3f]">
-                  10 Years of Advisory Excellence
+                  15 Years of Advisory Excellence
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#305d3f]">
                   Dedicated to Client Trust & Objective Lucknow Real Estate Guidance
@@ -138,7 +138,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
               </div>
 
               <p>
-                Athar Mansoor is the founder and lead consultant of GreenNest Realtors, bringing over a decade of dedicated, on-ground real estate advisory experience across Lucknow’s most prestigious residential corridors, including Gomti Nagar Extension, Amar Shaheed Path, and Sultanpur Road.
+                Athar Mansoor is the founder and lead consultant of GreenNest Realtors, bringing 15 years of dedicated, on-ground real estate advisory experience across Lucknow’s most prestigious residential corridors, including Gomti Nagar Extension, Amar Shaheed Path, and Sultanpur Road.
               </p>
 
               <p>
@@ -148,7 +148,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs">
                 <div className="bg-white p-4 border border-slate-200">
                   <strong className="text-[#305d3f] block text-sm font-sans mb-1">Zero Buyer Brokerage</strong>
-                  As an Authorised Channel Partner for premier developers including Shalimar Corp., clients receive direct developer inventory and transparent pricing without broker commissions.
+                  Clients receive direct developer inventory and transparent pricing without broker commissions.
                 </div>
                 <div className="bg-white p-4 border border-slate-200">
                   <strong className="text-[#305d3f] block text-sm font-sans mb-1">End-to-End Due Diligence</strong>
@@ -218,19 +218,19 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
                 In recognition of outstanding advisory performance, unwavering ethical standards, and sustained client satisfaction, <strong className="text-white font-medium">Athar Mansoor</strong> was officially honoured on stage by <strong className="text-[#C8AD78] font-medium">Mr. Khalid Masood, Managing Director | Shalimar Corp Ltd</strong> at the landmark <strong className="text-white font-medium">Shalimar Excellence Summit</strong>.
               </p>
               <p className="text-xs sm:text-sm text-slate-300">
-                This recognition underscores GreenNest Realtors' position as a premier, accredited channel partner for signature township enclaves including Shalimar OneWorld, Shalimar Valencia Towers, Shalimar Marbella, and Shalimar 21.
+                This recognition underscores GreenNest Realtors' position as a premier, trusted real estate consultancy for signature landmark developments across Lucknow.
               </p>
             </div>
 
             {/* Metrics */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-white/10 text-xs">
               <div className="space-y-1">
-                <span className="text-[#C8AD78] font-serif text-xl sm:text-2xl font-bold block">Accredited</span>
-                <span className="text-slate-300">Channel Partner Standing</span>
+                <span className="text-[#C8AD78] font-serif text-xl sm:text-2xl font-bold block">Curated</span>
+                <span className="text-slate-300">Portfolio Focus</span>
               </div>
               <div className="space-y-1">
-                <span className="text-[#C8AD78] font-serif text-xl sm:text-2xl font-bold block">10+ Years</span>
-                <span className="text-slate-300">Lucknow Advisory Focus</span>
+                <span className="text-[#C8AD78] font-serif text-xl sm:text-2xl font-bold block">15+ Years</span>
+                <span className="text-slate-300">Lucknow Advisory Experience</span>
               </div>
               <div className="space-y-1">
                 <span className="text-[#C8AD78] font-serif text-xl sm:text-2xl font-bold block">Excellence</span>
@@ -244,13 +244,13 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
       {/* Testimonials feature on About page */}
       <TestimonialsSection onNavigate={onNavigate} onOpenConsultation={onOpenConsultation} />
 
-      {/* Developer Relationship Disclosure */}
+      {/* Regulatory Disclosure */}
       <div className="bg-[#305d3f] text-white p-8 border border-[#23462f] space-y-3 shadow-sm">
         <h3 className="font-serif text-xl font-bold text-[#C8AD78]">
-          Transparent Developer Relationship Notice
+          Transparent Regulatory Notice
         </h3>
         <p className="text-xs text-slate-200 leading-relaxed">
-          GreenNest Realtors operates as an Authorised Channel Partner of Shalimar Corp. (Agent RERA: {AGENT_RERA_NUMBER}). We do not claim exclusive or official representation beyond authorized channel-partner terms. All final legal agreements, allotment letters, and payment transactions are executed directly between the buyer and the developer entity in compliance with UP-RERA guidelines.
+          GreenNest Realtors operates as an independent property consultancy. All final legal agreements, allotment letters, and payment transactions are executed directly between the buyer and the respective developer entity in compliance with UP-RERA guidelines.
         </p>
       </div>
     </div>

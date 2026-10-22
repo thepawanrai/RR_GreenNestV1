@@ -92,7 +92,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
                   <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold block">
                     Registered Office Address
                   </span>
-                  <span className="font-semibold text-slate-900 block leading-snug">{OFFICE_ADDRESS}</span>
+                  <div className="font-semibold text-slate-900 leading-snug">
+                    <p>FF 27 River View Arcade</p>
+                    <p>Gomtinagar Extension</p>
+                    <p>Lucknow (UP) 226010</p>
+                  </div>
                   <p className="text-[11px] text-slate-500 mt-1">
                     Specialized Focus: Shalimar OneWorld, Gomti Nagar Extension & Amar Shaheed Path
                   </p>
@@ -100,15 +104,11 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            {/* Compliance Badge */}
-            <div className="pt-2 border-t border-slate-100 space-y-2 text-xs text-slate-600 bg-emerald-50/60 p-4 border border-emerald-100">
-              <div className="flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-700" />
-                <span className="font-semibold text-[#305d3f]">UP-RERA Registered Agent:</span>
-                <span className="font-mono text-emerald-900 font-bold">{AGENT_RERA_NUMBER}</span>
-              </div>
+            {/* Advisory Note */}
+            <div className="pt-2 border-t border-slate-100 space-y-1 text-xs text-slate-600 bg-emerald-50/60 p-4 border border-emerald-100">
+              <span className="font-semibold text-[#305d3f] block">Boutique Real Estate Advisory</span>
               <p className="text-slate-600">
-                Lead Advisor: {AGENT_NAME} (10 Years Real Estate Advisory) · Authorised Channel Partner of Shalimar Corp. (Source: <a href="http://shalimarcorp.com/" target="_blank" rel="noopener noreferrer" className="underline text-slate-800">shalimarcorp.com</a>).
+                Lead Advisor: {AGENT_NAME} (15 Years Dedicated Lucknow Real Estate Advisory).
               </p>
             </div>
           </div>

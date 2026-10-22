@@ -197,7 +197,7 @@ export const TestimonialsSection: React.FC<TestimonialsSectionProps> = ({
                 <div className="flex items-start gap-2.5">
                   <CheckCircle2 className="w-4 h-4 text-[#C8AD78] flex-shrink-0 mt-0.5" />
                   <span>
-                    <strong>10 Years Experience:</strong> Dedicated Lucknow market focus led personally by Athar Mansoor.
+                    <strong>15 Years Experience:</strong> Dedicated Lucknow market focus led personally by Athar Mansoor.
                   </span>
                 </div>
               </div>
