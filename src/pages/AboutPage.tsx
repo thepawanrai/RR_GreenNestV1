@@ -164,7 +164,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
                   Schedule Private Advisory with Athar
                 </button>
                 <a
-                  href="https://wa.me/919235621921?text=Hello%20Athar,%20I%20would%20like%20to%20consult%20with%20you%20regarding%20Lucknow%20properties."
+                  href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                    'Hello Athar, I would like to consult with you regarding curated luxury residential projects in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="border border-[#305d3f] text-[#305d3f] hover:bg-[#305d3f]/5 text-xs font-medium py-3 px-5 transition-colors"

@@ -145,7 +145,7 @@ export const FaqsPage: React.FC<FaqsPageProps> = ({ onNavigate, onOpenConsultati
           </button>
           <a
             href={`https://wa.me/919235621921?text=${encodeURIComponent(
-              `Hello GreenNest, I have a question regarding Lucknow property regulations (Agent RERA: ${AGENT_RERA_NUMBER}).`
+              'Hello GreenNest, I have a question regarding curated property projects in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
             )}`}
             target="_blank"
             rel="noopener noreferrer"

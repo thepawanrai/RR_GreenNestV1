@@ -13,9 +13,13 @@ export const StickyMobileCTA: React.FC<StickyMobileCTAProps> = ({
   projectName,
 }) => {
   const getWhatsAppMessage = () => {
-    const topic = projectName || 'Lucknow curated properties';
+    if (projectName) {
+      return encodeURIComponent(
+        `Hello GreenNest Realtors, I am interested in ${projectName}. Please share verified details and pricing.`
+      );
+    }
     return encodeURIComponent(
-      `Hello GreenNest Realtors, I am interested in ${topic}. Please share verified details and pricing.`
+      'Hello GreenNest Realtors, I would like to explore curated luxury projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis). Please share verified details and pricing.'
     );
   };
 

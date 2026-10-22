@@ -96,7 +96,10 @@ export const LeadForm: React.FC<LeadFormProps> = ({
   };
 
   const getWhatsAppDirectLink = () => {
-    const proj = formData.projectName || (PROJECTS.find(p => p.slug === formData.projectSlug)?.displayName) || 'Curated Lucknow Properties';
+    const proj =
+      formData.projectName ||
+      PROJECTS.find((p) => p.slug === formData.projectSlug)?.displayName ||
+      'curated luxury projects in Lucknow (Shalimar OneWorld, KSMB The Royal Retreat, EMAAR Elite Oasis)';
     const text = encodeURIComponent(
       `Hello ${AGENT_NAME} (GreenNest Realtors), I am ${formData.name}. I would like to request details for ${proj}. Preferred Next Step: ${formData.requestedNextStep}.`
     );

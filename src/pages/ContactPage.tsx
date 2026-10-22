@@ -56,7 +56,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
 
               <a
                 href={`https://wa.me/919235621921?text=${encodeURIComponent(
-                  'Hello GreenNest Realtors, I would like to connect regarding Lucknow property consultation.'
+                  'Hello GreenNest Realtors, I would like to connect with you regarding curated residential and investment projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

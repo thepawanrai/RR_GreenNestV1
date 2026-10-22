@@ -67,7 +67,9 @@ export const Header: React.FC<HeaderProps> = ({
             </a>
             <span className="text-white/30">|</span>
             <a
-              href="https://wa.me/919235621921?text=Hello%20GreenNest%20Realtors,%20I%20would%20like%20to%20enquire%20about%20curated%20Shalimar%20projects."
+              href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                'Hello GreenNest Realtors, I would like to enquire about curated luxury projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-[#C8AD78] hover:text-[#DFCDA6] transition-colors font-medium"
@@ -193,7 +195,9 @@ export const Header: React.FC<HeaderProps> = ({
                 <span>{AGENT_PHONE}</span>
               </a>
               <a
-                href="https://wa.me/919235621921"
+                href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                  'Hello GreenNest Realtors, I would like to enquire about curated luxury projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
+                )}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1.5 text-[#305d3f] font-medium"

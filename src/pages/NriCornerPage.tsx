@@ -165,7 +165,9 @@ export const NriCornerPage: React.FC<NriCornerPageProps> = ({ onNavigate, onOpen
           </p>
           <div className="pt-2">
             <a
-              href="https://wa.me/919235621921?text=Hello%20Athar,%20I%20am%20an%20NRI%20buyer%20requesting%20a%20virtual%20consultation."
+              href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                'Hello Athar, I am an NRI buyer requesting a virtual consultation regarding curated properties in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-xs font-semibold text-[#305d3f] hover:underline"

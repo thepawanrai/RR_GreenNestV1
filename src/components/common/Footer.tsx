@@ -161,7 +161,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <div className="pt-2 text-xs text-slate-400">
                 <span>Direct WhatsApp Consultation:</span>
                 <a
-                  href="https://wa.me/919235621921?text=Hello%20GreenNest%20Realtors,%20I%20am%20enquiring%20about%20Shalimar%20OneWorld%20properties."
+                  href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                    'Hello GreenNest Realtors, I would like to consult with Athar Mansoor regarding curated luxury projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
+                  )}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-1 flex items-center gap-1.5 text-[#C8AD78] hover:text-[#DFCDA6]"

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
-import { AlertCircle } from 'lucide-react';
 
 interface TermsPageProps {
   onNavigate: (path: string) => void;
@@ -18,13 +17,6 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
         <p className="text-xs text-[#242824]/60">
           Last updated: 16 October 2026 · GreenNest Realtors, Lucknow, Uttar Pradesh
         </p>
-      </div>
-
-      <div className="p-4 bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-start gap-2.5">
-        <AlertCircle className="w-4 h-4 text-amber-700 flex-shrink-0 mt-0.5" />
-        <span>
-          <strong>Draft for Legal Review:</strong> Starter terms of website use and enquiry submission. Subject to formal legal confirmation.
-        </span>
       </div>
 
       <div className="space-y-6 text-xs sm:text-sm text-[#242824]/85 leading-relaxed font-light">
@@ -45,7 +37,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
         <section className="space-y-2">
           <h2 className="font-serif text-lg font-bold text-[#305d3f]">3. Intellectual Property & Visual Rights</h2>
           <p>
-            Project names, trademarks, and logos (including "Shalimar Corp.", "Shalimar OneWorld", and individual project marks) belong to their respective proprietors. Renderings and illustrative photographs are utilized for representative advisory purposes under channel-partner marketing conventions.
+            Project names, trademarks, and logos (including "Shalimar OneWorld", "KSMB The Royal Retreat", "EMAAR Elite Oasis", and respective promoter marks) belong to their respective proprietors. Renderings and illustrative photographs are utilized for representative advisory purposes under channel-partner marketing conventions.
           </p>
         </section>
 

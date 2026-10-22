@@ -73,7 +73,7 @@ export const AdvisorCard: React.FC<AdvisorCardProps> = ({
           
           <a
             href={`https://wa.me/919235621921?text=${encodeURIComponent(
-              `Hello ${AGENT_NAME}, I would like to consult with you regarding property opportunities in Lucknow.`
+              `Hello ${AGENT_NAME}, I would like to consult with you regarding curated luxury property opportunities in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).`
             )}`}
             target="_blank"
             rel="noopener noreferrer"
