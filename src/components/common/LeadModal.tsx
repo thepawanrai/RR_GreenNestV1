@@ -85,7 +85,7 @@ export const LeadModal: React.FC<LeadModalProps> = ({
             defaultProjectName={defaultProjectName}
             compact={true}
             title={defaultProjectName ? `Enquire for ${defaultProjectName}` : 'Book a Private Consultation'}
-            subtitle="Direct advisory with Athar Mansoor (10 Yrs Real Estate Experience). Transparent project facts, zero brokerage."
+            subtitle="Direct advisory with Athar Mansoor (15 Yrs Real Estate Experience). Transparent project facts, zero brokerage."
             onSuccess={() => {}}
             onCancel={onClose}
           />

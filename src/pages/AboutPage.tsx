@@ -100,7 +100,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
             Meet Athar Mansoor
           </h2>
           <p className="text-xs text-slate-500">
-            Registered Real Estate Professional: {AGENT_NAME} · Agent RERA: {AGENT_RERA_NUMBER}
+            Founder & Lead Consultant · 15 Years Lucknow Advisory Excellence
           </p>
         </div>
 
@@ -110,18 +110,18 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
             {/* Athar Mansoor Photo */}
             <div className="lg:col-span-4 flex justify-center">
               <div className="relative group max-w-xs w-full">
-                <div className="aspect-square overflow-hidden border-4 border-[#C8AD78]/60 shadow-lg bg-[#305d3f]">
+                <div className="aspect-square overflow-hidden border-4 border-[#C8AD78]/60 shadow-lg bg-slate-50">
                   <img
                     src="/images/advisor/athar-mansoor.png"
                     alt="Athar Mansoor - Founder & Lead Advisor, GreenNest Realtors Lucknow"
-                    className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-300"
+                    className="w-full h-full object-cover object-top group-hover:scale-102 transition-transform duration-300"
                     referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="mt-3 text-center">
                   <h4 className="font-serif text-xl font-bold text-[#305d3f]">{AGENT_NAME}</h4>
                   <p className="text-xs font-medium text-slate-600">Founder & Senior Property Consultant</p>
-                  <p className="text-[11px] text-[#C8AD78] font-mono mt-0.5">UP-RERA: {AGENT_RERA_NUMBER}</p>
+                  <p className="text-[11px] text-[#C8AD78] font-medium mt-0.5">15 Years Dedicated Lucknow Advisory</p>
                 </div>
               </div>
             </div>

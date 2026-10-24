@@ -21,12 +21,12 @@ export const AdvisorCard: React.FC<AdvisorCardProps> = ({
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-5">
           {/* Portrait photo of Athar Mansoor */}
-          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-sm overflow-hidden flex-shrink-0 border-2 border-[#C8AD78] shadow-md bg-[#305d3f] relative group">
+          <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-sm overflow-hidden flex-shrink-0 border-2 border-[#C8AD78] shadow-md bg-slate-50 relative group">
             {!imgError ? (
               <img
                 src="/images/advisor/athar-mansoor.png"
                 alt="Athar Mansoor - Founder & Lead Advisor, GreenNest Realtors"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-top"
                 onError={() => setImgError(true)}
                 referrerPolicy="no-referrer"
               />

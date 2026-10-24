@@ -46,13 +46,34 @@ export const LeadForm: React.FC<LeadFormProps> = ({
     e.preventDefault();
     setErrorMsg(null);
 
-    if (!formData.name.trim()) {
+    const name = formData.name.trim();
+    const email = (formData.email || '').trim();
+    const phone = formData.phone.trim();
+    const notes = (formData.notes || '').trim();
+    const projectName = formData.projectName || 'General Lucknow Property Inquiry';
+    const budgetRange = formData.budgetRange || '';
+    const timeline = formData.timeline || '';
+    const userCityCountry = formData.userCityCountry || 'Not Specified';
+    const preferredContactMethod = formData.preferredContactMethod || 'WhatsApp';
+    const requestedNextStep = formData.requestedNextStep || 'Project Details & Pricing';
+
+    if (!name) {
       setErrorMsg('Please enter your full name.');
       return;
     }
 
-    if (!formData.phone.trim() || formData.phone.trim().length < 8) {
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setErrorMsg('Please enter a valid email address.');
+      return;
+    }
+
+    if (!phone || phone.length < 8) {
       setErrorMsg('Please enter a valid phone number (at least 8 digits).');
+      return;
+    }
+
+    if (!notes) {
+      setErrorMsg('Please enter your message or enquiry requirements.');
       return;
     }
 
@@ -64,28 +85,47 @@ export const LeadForm: React.FC<LeadFormProps> = ({
     setLoading(true);
 
     try {
-      const urlParams = new URLSearchParams(window.location.search);
-      const payload: LeadSubmissionPayload = {
-        ...formData,
-        sourceUrl: window.location.href,
-        utmSource: urlParams.get('utm_source') || undefined,
-        utmMedium: urlParams.get('utm_medium') || undefined,
-        utmCampaign: urlParams.get('utm_campaign') || undefined,
-      };
+      // Direct Web3Forms Submission Integration
+      const web3FormData = new FormData();
+      web3FormData.append('access_key', 'b8043057-cf87-46a6-b309-ff0e8c4d1e58');
+      web3FormData.append('name', name);
+      web3FormData.append('email', email);
+      web3FormData.append('phone', phone);
+      web3FormData.append('project', projectName);
+      web3FormData.append('budget', budgetRange);
+      web3FormData.append('timeline', timeline);
+      web3FormData.append('city_country', userCityCountry);
+      web3FormData.append('preferred_contact_method', preferredContactMethod);
+      web3FormData.append('requested_next_step', requestedNextStep);
 
-      const res = await fetch('/api/enquiry', {
+      const fullMessage = `${notes}\n\n---\nProject Interested: ${projectName}\nBudget: ${budgetRange}\nTimeline: ${timeline}\nPreferred Channel: ${preferredContactMethod}\nRequested Next Step: ${requestedNextStep}\nCity/Country: ${userCityCountry}\nSource URL: ${window.location.href}`;
+
+      web3FormData.append('message', fullMessage);
+      web3FormData.append('subject', `New Lead: ${name} - ${projectName}`);
+      web3FormData.append('from_name', 'GreenNest Realtors');
+
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        headers: {
+          Accept: 'application/json',
+        },
+        body: web3FormData,
       });
 
-      const data: LeadSubmissionResult = await res.json();
+      const data = await response.json();
 
-      if (!res.ok || !data.success) {
-        throw new Error(data.message || 'Server encountered an issue submitting your enquiry.');
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Unable to submit enquiry. Please try again or connect via direct WhatsApp.');
       }
 
-      setResult(data);
+      setResult({
+        success: true,
+        message: 'Your enquiry has been successfully delivered to Athar Mansoor via Web3Forms. We will connect with verified project details shortly.',
+        leadId: data.id || `W3F-${Date.now()}`,
+        status: 'DELIVERED_CRM',
+        timestamp: new Date().toISOString(),
+        whatsAppDirectUrl: getWhatsAppDirectLink(),
+      });
       if (onSuccess) onSuccess();
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Network error or service unavailable.';
@@ -181,7 +221,22 @@ export const LeadForm: React.FC<LeadFormProps> = ({
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      <form
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        onSubmit={handleSubmit}
+        className="space-y-4"
+      >
+        {/* Web3Forms Access Key and Hidden Parameters */}
+        <input type="hidden" name="access_key" value="b8043057-cf87-46a6-b309-ff0e8c4d1e58" />
+        <input type="hidden" name="from_name" value="GreenNest Realtors" />
+        <input
+          type="hidden"
+          name="subject"
+          value={`New Lead: ${formData.name || 'Website Visitor'} - ${formData.projectName || 'Curated Lucknow Luxury Properties'}`}
+        />
+        <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} />
+
         {/* Anti-spam honeypot */}
         <div className="hidden" aria-hidden="true">
           <label htmlFor="website_hp">Leave this field blank</label>
@@ -204,6 +259,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             </label>
             <input
               type="text"
+              name="name"
               required
               placeholder="e.g. Rahul Sharma"
               value={formData.name}
@@ -217,6 +273,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
             </label>
             <input
               type="tel"
+              name="phone"
               required
               placeholder="e.g. +91 98765 43210"
               value={formData.phone}
@@ -230,10 +287,12 @@ export const LeadForm: React.FC<LeadFormProps> = ({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
-              Email Address <span className="text-xs font-normal lowercase text-slate-400">(optional)</span>
+              Email Address <span className="text-red-600">*</span>
             </label>
             <input
               type="email"
+              name="email"
+              required
               placeholder="e.g. rahul@example.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -375,6 +434,22 @@ export const LeadForm: React.FC<LeadFormProps> = ({
               <span>Email</span>
             </label>
           </div>
+        </div>
+
+        {/* Message / Specific Requirements Textarea */}
+        <div>
+          <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 mb-1">
+            Message / Requirements <span className="text-red-600">*</span>
+          </label>
+          <textarea
+            name="message"
+            required
+            rows={3}
+            placeholder="Share any specific requirements (e.g. preferred 3/4 BHK layout, floor level, possession target, budget preference, or site visit request)..."
+            value={formData.notes}
+            onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+            className="w-full bg-slate-50 border border-slate-200 focus:border-[#305d3f] focus:bg-white text-sm px-3.5 py-2.5 text-slate-900 transition-colors"
+          />
         </div>
 
         {/* Consent Checkbox */}
