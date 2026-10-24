@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, MessageCircle, Menu, X, ArrowUpRight, ShieldCheck } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
-import { AGENT_RERA_NUMBER, AGENT_PHONE } from '../../data/projects';
+import { AGENT_RERA_NUMBER, AGENT_PHONE, WHATSAPP_PHONE_NUMBER } from '../../data/projects';
 
 interface HeaderProps {
   currentPath: string;
@@ -19,9 +19,9 @@ export const Header: React.FC<HeaderProps> = ({
   const navLinks = [
     { label: 'Home', path: '/' },
     { label: 'Projects', path: '/projects' },
+    { label: 'Reviews', path: '/testimonials' },
     { label: 'NRI Corner', path: '/nri-corner' },
     { label: "Buyer's Guide", path: '/buyers-guide' },
-    { label: 'Insights', path: '/insights' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
   ];
@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({
             </a>
             <span className="text-white/30">|</span>
             <a
-              href={`https://wa.me/919235621921?text=${encodeURIComponent(
+              href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                 'Hello GreenNest Realtors, I would like to enquire about curated luxury projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
               )}`}
               target="_blank"
@@ -195,7 +195,7 @@ export const Header: React.FC<HeaderProps> = ({
                 <span>{AGENT_PHONE}</span>
               </a>
               <a
-                href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                   'Hello GreenNest Realtors, I would like to enquire about curated luxury projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
                 )}`}
                 target="_blank"

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle, MessageCircle, Phone, Clock, ShieldCheck } from 'lucide-react';
-import { PROJECTS, AGENT_PHONE, AGENT_NAME } from '../../data/projects';
+import { PROJECTS, AGENT_PHONE, AGENT_NAME, WHATSAPP_PHONE_NUMBER } from '../../data/projects';
 import { LeadSubmissionPayload, LeadSubmissionResult } from '../../types';
 
 interface LeadFormProps {
@@ -143,7 +143,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
     const text = encodeURIComponent(
       `Hello ${AGENT_NAME} (GreenNest Realtors), I am ${formData.name}. I would like to request details for ${proj}. Preferred Next Step: ${formData.requestedNextStep}.`
     );
-    return `https://wa.me/919235621921?text=${text}`;
+    return `https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${text}`;
   };
 
   if (result) {

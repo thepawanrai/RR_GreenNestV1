@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, MessageCircle, Calendar } from 'lucide-react';
-import { AGENT_PHONE } from '../../data/projects';
+import { AGENT_PHONE, WHATSAPP_PHONE_NUMBER } from '../../data/projects';
 
 interface StickyMobileCTAProps {
   onOpenConsultation: () => void;
@@ -36,7 +36,7 @@ export const StickyMobileCTA: React.FC<StickyMobileCTAProps> = ({
         </a>
 
         <a
-          href={`https://wa.me/919235621921?text=${getWhatsAppMessage()}`}
+          href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${getWhatsAppMessage()}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex flex-col items-center justify-center py-2 px-1 text-[#305d3f] hover:text-[#23462f] transition-colors bg-slate-50 border border-slate-200"

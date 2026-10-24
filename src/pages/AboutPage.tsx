@@ -3,7 +3,7 @@ import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { AdvisorCard } from '../components/common/AdvisorCard';
 import { TestimonialsSection } from '../components/common/TestimonialsSection';
 import { ShieldCheck, Target, Eye, Building2 } from 'lucide-react';
-import { AGENT_RERA_NUMBER, AGENT_NAME } from '../data/projects';
+import { AGENT_RERA_NUMBER, AGENT_NAME, WHATSAPP_PHONE_NUMBER } from '../data/projects';
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
@@ -164,7 +164,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenConsulta
                   Schedule Private Advisory with Athar
                 </button>
                 <a
-                  href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                  href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                     'Hello Athar, I would like to consult with you regarding curated luxury residential projects in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
                   )}`}
                   target="_blank"

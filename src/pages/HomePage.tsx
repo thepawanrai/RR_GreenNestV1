@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PROJECTS, AGENT_NAME, AGENT_PHONE } from '../data/projects';
+import { PROJECTS, AGENT_NAME, AGENT_PHONE, WHATSAPP_PHONE_NUMBER } from '../data/projects';
 import { ARTICLES } from '../data/articles';
 import { FAQS } from '../data/faqs';
 import { ProjectCard } from '../components/common/ProjectCard';
@@ -187,7 +187,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </button>
 
                 <a
-                  href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                  href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                     `Hello ${AGENT_NAME}, I would like to know more about ${activeSlide.projectName}.`
                   )}`}
                   target="_blank"

@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { FAQS } from '../data/faqs';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { ChevronDown, Search, HelpCircle, MessageCircle, ShieldCheck } from 'lucide-react';
-import { AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE } from '../data/projects';
+import { AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE, WHATSAPP_PHONE_NUMBER } from '../data/projects';
 
 interface FaqsPageProps {
   onNavigate: (path: string) => void;
@@ -144,7 +144,7 @@ export const FaqsPage: React.FC<FaqsPageProps> = ({ onNavigate, onOpenConsultati
             Ask an Advisor
           </button>
           <a
-            href={`https://wa.me/919235621921?text=${encodeURIComponent(
+            href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
               'Hello GreenNest, I have a question regarding curated property projects in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
             )}`}
             target="_blank"

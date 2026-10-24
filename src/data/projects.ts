@@ -6,6 +6,16 @@ export const AGENT_PHONE = '+91 92356 21921';
 export const AGENT_EMAIL = 'greennestlko@gmail.com';
 export const OFFICE_ADDRESS = 'FF 27 River View Arcade, Gomtinagar Extension, Lucknow (UP) 226010';
 
+export const WHATSAPP_PHONE_NUMBER: string = (() => {
+  const metaEnv = (import.meta as any).env || {};
+  const raw =
+    metaEnv.VITE_WHATSAPP_PHONE_NUMBER ||
+    metaEnv.WHATSAPP_PHONE_NUMBER ||
+    (typeof process !== 'undefined' ? process.env?.WHATSAPP_PHONE_NUMBER : '') ||
+    '919235621921';
+  return String(raw).replace(/\D/g, '') || '919235621921';
+})();
+
 export const PROJECTS: Project[] = [
   // 1. FLAGSHIP: SHALIMAR ONEWORLD
   {

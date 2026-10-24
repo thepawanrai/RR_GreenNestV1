@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { LeadForm } from '../components/common/LeadForm';
 import { Globe2, Video, FileText, CheckCircle2, ShieldAlert, ArrowRight, MessageCircle, ShieldCheck } from 'lucide-react';
-import { AGENT_RERA_NUMBER, AGENT_NAME } from '../data/projects';
+import { AGENT_RERA_NUMBER, AGENT_NAME, WHATSAPP_PHONE_NUMBER } from '../data/projects';
 
 interface NriCornerPageProps {
   onNavigate: (path: string) => void;
@@ -165,7 +165,7 @@ export const NriCornerPage: React.FC<NriCornerPageProps> = ({ onNavigate, onOpen
           </p>
           <div className="pt-2">
             <a
-              href={`https://wa.me/919235621921?text=${encodeURIComponent(
+              href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                 'Hello Athar, I am an NRI buyer requesting a virtual consultation regarding curated properties in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
               )}`}
               target="_blank"

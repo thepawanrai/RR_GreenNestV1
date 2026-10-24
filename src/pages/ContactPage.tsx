@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { LeadForm } from '../components/common/LeadForm';
 import { Phone, Mail, MapPin, MessageCircle, Clock, ShieldCheck, ExternalLink } from 'lucide-react';
-import { AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE, AGENT_EMAIL, OFFICE_ADDRESS } from '../data/projects';
+import { AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE, AGENT_EMAIL, OFFICE_ADDRESS, WHATSAPP_PHONE_NUMBER } from '../data/projects';
 
 interface ContactPageProps {
   onNavigate: (path: string) => void;
@@ -55,7 +55,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
               </a>
 
               <a
-                href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                   'Hello GreenNest Realtors, I would like to connect with you regarding curated residential and investment projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
                 )}`}
                 target="_blank"

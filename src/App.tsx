@@ -3,6 +3,7 @@ import { Header } from './components/common/Header';
 import { Footer } from './components/common/Footer';
 import { LeadModal } from './components/common/LeadModal';
 import { StickyMobileCTA } from './components/common/StickyMobileCTA';
+import { FloatingWhatsAppButton } from './components/common/FloatingWhatsAppButton';
 
 import { HomePage } from './pages/HomePage';
 import { ProjectsPage } from './pages/ProjectsPage';
@@ -15,6 +16,7 @@ import { InsightsPage } from './pages/InsightsPage';
 import { ArticleDetailPage } from './pages/ArticleDetailPage';
 import { FaqsPage } from './pages/FaqsPage';
 import { ContactPage } from './pages/ContactPage';
+import { TestimonialsPage } from './pages/TestimonialsPage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { TermsPage } from './pages/TermsPage';
 import { DisclaimerPage } from './pages/DisclaimerPage';
@@ -88,6 +90,8 @@ export default function App() {
       }
     } else if (normPath === '/faqs') {
       title = 'Frequently Asked Questions | GreenNest Realtors';
+    } else if (normPath === '/testimonials' || normPath === '/reviews') {
+      title = 'Client Reviews & Investment ROI | GreenNest Realtors';
     } else if (normPath === '/contact') {
       title = 'Contact GreenNest Realtors | Schedule Private Consultation';
     } else if (normPath === '/privacy-policy') {
@@ -210,6 +214,17 @@ export default function App() {
       );
     }
 
+    if (normPath === '/testimonials' || normPath === '/reviews') {
+      return (
+        <TestimonialsPage
+          onNavigate={navigateTo}
+          onOpenConsultation={(s, n) =>
+            setConsultationModal({ isOpen: true, projectSlug: s, projectName: n })
+          }
+        />
+      );
+    }
+
     if (normPath === '/contact') {
       return <ContactPage onNavigate={navigateTo} />;
     }
@@ -265,6 +280,15 @@ export default function App() {
         }
         projectSlug={currentProject?.slug}
         projectName={currentProject?.displayName}
+      />
+
+      {/* Floating WhatsApp Action Button (Visible across Desktop & Mobile) */}
+      <FloatingWhatsAppButton
+        customMessage={
+          currentProject
+            ? `Hello Athar Mansoor (GreenNest Realtors), I am exploring ${currentProject.displayName} on your website and would like to request verified project details and pricing.`
+            : undefined
+        }
       />
 
       {/* Global Lead & Consultation Modal */}

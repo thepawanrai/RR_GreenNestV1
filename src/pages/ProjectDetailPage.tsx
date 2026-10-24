@@ -18,7 +18,7 @@ import {
 import { Breadcrumbs } from '../components/common/Breadcrumbs';
 import { LeadForm } from '../components/common/LeadForm';
 import { AdvisorCard } from '../components/common/AdvisorCard';
-import { AGENT_PHONE, AGENT_NAME } from '../data/projects';
+import { AGENT_PHONE, AGENT_NAME, WHATSAPP_PHONE_NUMBER } from '../data/projects';
 
 interface ProjectDetailPageProps {
   project: Project;
@@ -126,7 +126,7 @@ export const ProjectDetailPage: React.FC<ProjectDetailPageProps> = ({
                 </button>
 
                 <a
-                  href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                  href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                     `Hello ${AGENT_NAME}, I would like to schedule a private consultation and site visit for ${project.displayName}.`
                   )}`}
                   target="_blank"

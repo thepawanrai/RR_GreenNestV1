@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ShieldCheck, Phone, MessageCircle, Calendar, CheckCircle2, Award } from 'lucide-react';
-import { AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE } from '../../data/projects';
+import { AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE, WHATSAPP_PHONE_NUMBER } from '../../data/projects';
 
 interface AdvisorCardProps {
   onBookConsultation?: () => void;
@@ -72,7 +72,7 @@ export const AdvisorCard: React.FC<AdvisorCardProps> = ({
           </button>
           
           <a
-            href={`https://wa.me/919235621921?text=${encodeURIComponent(
+            href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
               `Hello ${AGENT_NAME}, I would like to consult with you regarding curated luxury property opportunities in Lucknow (including Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).`
             )}`}
             target="_blank"

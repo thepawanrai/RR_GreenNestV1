@@ -1,6 +1,6 @@
 import React from 'react';
 import { Phone, Mail, MapPin, ShieldCheck, ArrowRight, ExternalLink } from 'lucide-react';
-import { PROJECTS, AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE, AGENT_EMAIL, OFFICE_ADDRESS } from '../../data/projects';
+import { PROJECTS, AGENT_RERA_NUMBER, AGENT_NAME, AGENT_PHONE, AGENT_EMAIL, OFFICE_ADDRESS, WHATSAPP_PHONE_NUMBER } from '../../data/projects';
 import { BrandLogo } from './BrandLogo';
 
 interface FooterProps {
@@ -74,15 +74,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </li>
               <li>
                 <button
-                  onClick={() => {
-                    onNavigate('/');
-                    setTimeout(() => {
-                      document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 150);
-                  }}
-                  className="hover:text-[#C8AD78] transition-colors"
+                  onClick={() => onNavigate('/testimonials')}
+                  className="hover:text-[#C8AD78] transition-colors cursor-pointer"
                 >
-                  Client Testimonials
+                  Client Reviews & ROI Track Record
                 </button>
               </li>
               <li>
@@ -161,7 +156,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               <div className="pt-2 text-xs text-slate-400">
                 <span>Direct WhatsApp Consultation:</span>
                 <a
-                  href={`https://wa.me/919235621921?text=${encodeURIComponent(
+                  href={`https://wa.me/${WHATSAPP_PHONE_NUMBER}?text=${encodeURIComponent(
                     'Hello GreenNest Realtors, I would like to consult with Athar Mansoor regarding curated luxury projects in Lucknow (such as Shalimar OneWorld, KSMB The Royal Retreat, and EMAAR Elite Oasis).'
                   )}`}
                   target="_blank"
@@ -174,13 +169,47 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-2 space-y-2">
               <button
                 onClick={() => onNavigate('/contact')}
                 className="w-full text-center bg-[#C8AD78] text-[#23462f] hover:bg-[#DFCDA6] text-xs font-semibold uppercase tracking-wider py-2.5 px-4 transition-colors shadow-sm cursor-pointer"
               >
                 Schedule Private Consultation
               </button>
+
+              <div className="pt-2 text-xs text-slate-300 border-t border-white/10 space-y-1.5">
+                <span className="font-semibold text-white block text-[11px] uppercase tracking-wider text-[#C8AD78]">
+                  Rate Your Experience:
+                </span>
+                <div className="flex items-center gap-2 text-[11px] flex-wrap">
+                  <a
+                    href="https://g.page/r/CYMEc-KtKlEkEBI/review"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-300 hover:text-white underline flex items-center gap-1"
+                  >
+                    <span>Google Review</span>
+                    <ExternalLink className="w-3 h-3 text-[#C8AD78]" />
+                  </a>
+                  <span className="text-white/20">·</span>
+                  <a
+                    href="https://www.trustpilot.com/evaluate/greennestrealtors.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-300 hover:text-white underline flex items-center gap-1"
+                  >
+                    <span>Trustpilot</span>
+                    <ExternalLink className="w-3 h-3 text-[#C8AD78]" />
+                  </a>
+                  <span className="text-white/20">·</span>
+                  <button
+                    onClick={() => onNavigate('/testimonials')}
+                    className="text-[#C8AD78] hover:underline cursor-pointer"
+                  >
+                    On-Site
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
