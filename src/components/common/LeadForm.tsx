@@ -120,7 +120,7 @@ export const LeadForm: React.FC<LeadFormProps> = ({
 
       setResult({
         success: true,
-        message: 'Your enquiry has been successfully delivered to Athar Mansoor via Web3Forms. We will connect with verified project details shortly.',
+        message: 'Your enquiry has been successfully delivered to Athar Mansoor. We will connect with verified project details shortly.',
         leadId: data.id || `W3F-${Date.now()}`,
         status: 'DELIVERED_CRM',
         timestamp: new Date().toISOString(),

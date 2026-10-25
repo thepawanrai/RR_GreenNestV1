@@ -95,7 +95,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const activeSlide = HERO_SLIDES[currentSlide];
 
   return (
-    <div className="space-y-16 sm:space-y-24 bg-white">
+    <div className="bg-white">
       {/* 1. CINEMATIC FULL-SECTION HERO SLIDER (Whole Image + Full Details) */}
       <section 
         className="relative w-full min-h-[580px] sm:min-h-[640px] lg:min-h-[720px] flex items-end overflow-hidden bg-slate-950 text-white"
@@ -277,7 +277,9 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 3. SHALIMAR ONEWORLD TOWNSHIP SPOTLIGHT */}
+      {/* BODY CONTENT SECTIONS */}
+      <div className="space-y-14 sm:space-y-20 pt-8 sm:pt-12 pb-12 sm:pb-16">
+        {/* 3. SHALIMAR ONEWORLD TOWNSHIP SPOTLIGHT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
         <div className="bg-slate-50 border border-slate-200 p-8 sm:p-10 space-y-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-200 pb-6">
@@ -579,6 +581,7 @@ export const HomePage: React.FC<HomePageProps> = ({
           onViewProjects={() => onNavigate('/projects')}
         />
       </section>
+      </div>
     </div>
   );
 };

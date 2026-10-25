@@ -77,7 +77,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('/testimonials')}
                   className="hover:text-[#C8AD78] transition-colors cursor-pointer"
                 >
-                  Client Reviews & ROI Track Record
+                  Client Reviews
                 </button>
               </li>
               <li>
